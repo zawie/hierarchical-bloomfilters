@@ -5,16 +5,15 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define arr_t           size_t
+#define byte_t          char
 #define BITS_PER_BYTE   8
-#define BYTES_PER_ARR_T (sizeof(arr_t))
-#define BITS_PER_ARR_T  (BITS_PER_BYTE*BYTES_PER_ARR_T)
 
 #define IS_VALID_INDEX (bitarr, index) ((bool) (((unsigned) index) < bitarr->num_bits)) //Used to check if an index is valid
 
 typedef struct bit_arry {
-    unsigned num_bits;
-    arr_t* arr;
+    size_t num_bits;
+    size_t size;
+    byte_t* arr;
 } bitarr_t;
 
 /**

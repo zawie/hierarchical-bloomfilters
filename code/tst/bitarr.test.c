@@ -18,15 +18,20 @@ void test_set(void)
     int i;
     bitarr_t * b = bitarr_init(NUM_BITS);
 
-    //Set all even bits
+    /* Set all even bits */
     for(i = 0; i < NUM_BITS; i += 2) {
       bitarr_set(b, i);
     }
 
-    //Ensure all bits are set as expected
-    for(i = 0; i < NUM_BITS/8; i++) {
-      TEST_ASSERT_BITS(0b11111111, 0b01010101, b->arr[i]);
+    /* Ensure all bits are set as expected */
+    //Check bytes that should be fully set
+    for(i = 0; i < b->size - 1; i++) {
+      TEST_ASSERT_BITS(0xFF, 0x55, b->arr[i]);
     }
+    //Check last byte, which could be partially set
+    TEST_ASSERT_BITS(0xFF >> (BITS_PER_BYTE - (NUM_BITS % BITS_PER_BYTE)), 0x55, b->arr[i]);
+
+    bitarr_free(b);
 }
 
 // void test_unset(void)
