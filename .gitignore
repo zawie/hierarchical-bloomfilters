@@ -1,2 +1,10 @@
 #Ignore IDE
 .vscode
+
+#Ignore cores
+core.*
+
+#Ignore extra LaTeX artifacts
+writeup/*
+!writeup/*.pdf
+!writeup/*.tex
