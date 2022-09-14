@@ -26,5 +26,5 @@ void bitarr_unset(bitarr_t * bitarr, unsigned index) {
 }
 
 bool bitarr_check(bitarr_t * bitarr, unsigned index) {
-    return (bool) bitarr->arr[GET_BYTE_INDEX(index)] & (1 << GET_BIT_INDEX(index));
+    return (bool) (bitarr->arr[GET_BYTE_INDEX(index)] & (1 << GET_BIT_INDEX(index)));
 }
