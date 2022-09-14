@@ -30,7 +30,6 @@ void test_insert(void)
     TEST_ASSERT_FALSE(bloomfilter_check(bf, b)); //Could theoretically be true, but this should be unlikely.
 }
 
-
 int main(void)
 {
     UNITY_BEGIN();

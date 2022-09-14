@@ -12,11 +12,11 @@
 #include "hash.djb2.c"
 
 #define BITS_PER_ELEMENT    10
-#define NUM_HASH_FUNCTIONS  7
+#define MAX_HASH_FUNCTIONS  20
 
 typedef struct bloom_filter {
     unsigned k;                                         // Number of hash functions
-    hash_config_t hash_configs [NUM_HASH_FUNCTIONS];    // Hash function configurations
+    hash_config_t hash_configs [MAX_HASH_FUNCTIONS];    // Hash function configurations
     bitarr_t arr;                                       // Underlying bit array
 } bloomfilt_t;
 
