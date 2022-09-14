@@ -21,7 +21,7 @@ void bitarr_set(bitarr_t * bitarr, unsigned index) {
 void bitarr_unset(bitarr_t * bitarr, unsigned index) {
     unsigned section_index = index/BITS_PER_ARR_T;
     unsigned bit_index = index % BITS_PER_ARR_T;
-    bitarr->arr[section_index] ^= (1 >> bit_index);
+    bitarr->arr[section_index] &= ~(1 >> bit_index);
 }
 
 bool bitarr_check(bitarr_t * bitarr, unsigned index) {
