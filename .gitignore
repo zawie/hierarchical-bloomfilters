@@ -4,6 +4,9 @@
 #Ignore cores
 core.*
 
+#Ignore executables
+*.exe
+
 #Ignore extra LaTeX artifacts
 writeup/*
 !writeup/*.pdf
