@@ -25,6 +25,14 @@ typedef struct bit_arry {
 bitarr_t * bitarr_init(unsigned num_bits);
 
 /**
+ * Intializes a bit array at a predefined address with a specified starting at a page boundary.
+ * 
+ * @param num_bits the number of bits desired in the bit array
+ * @return a struct pointer representing the data structure
+ */
+void bitarr_init_at_addr(unsigned num_bits, bitarr_t * addr);
+
+/**
  * Frees all memory allocated to create the bit array
  * 
  * @param bitarr the bit array to free

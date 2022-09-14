@@ -5,11 +5,15 @@
 
 bitarr_t * bitarr_init(unsigned num_bits) {
     bitarr_t *b = (bitarr_t *) malloc(sizeof(bitarr_t));
-    b->num_bits = num_bits;
-    b->size = (num_bits+BITS_PER_BYTE-1)/BITS_PER_BYTE;
+    bitarr_init_at_addr(num_bits, b);
+    return b;
+}
 
+void bitarr_init_at_addr(unsigned num_bits, bitarr_t * addr) {
+    addr->num_bits = num_bits;
+    addr->size = (num_bits+BITS_PER_BYTE-1)/BITS_PER_BYTE;
     //valloc manually allocates memory starting at a page boundary (https://ftp.gnu.org/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_3.html)
-    b->arr = (byte_t *) valloc(b->size);
+    addr->arr = (byte_t *) valloc(addr->size);
 }
 
 void bitarr_free(bitarr_t * bitarr) {
