@@ -1,4 +1,4 @@
-#include "bitarr.h";
+#include "bitarr.h"
 
 bitarr_t * bitarr_init(unsigned num_bits) {
     bitarr_t *b = (bitarr_t *) malloc(sizeof(bitarr_t));
