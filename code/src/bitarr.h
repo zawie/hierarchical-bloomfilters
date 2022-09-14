@@ -10,7 +10,7 @@
 
 typedef unsigned char byte_t;
 
-typedef struct bit_arry {
+typedef struct bit_array {
     size_t num_bits;
     size_t size;
     byte_t* arr;
