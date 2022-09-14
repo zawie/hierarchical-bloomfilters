@@ -5,10 +5,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define byte_t          char
 #define BITS_PER_BYTE   8
-
 #define IS_VALID_INDEX (bitarr, index) ((bool) (((unsigned) index) < bitarr->num_bits)) //Used to check if an index is valid
+
+typedef unsigned char byte_t;
 
 typedef struct bit_arry {
     size_t num_bits;

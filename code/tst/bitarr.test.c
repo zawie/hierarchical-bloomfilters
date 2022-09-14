@@ -1,5 +1,6 @@
 #include "../lib/unity/src/unity.h"
 #include "../src/bitarr.h"
+#include "../src/bitarr.c"
 
 #define NUM_BITS 100
 
