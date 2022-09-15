@@ -10,7 +10,8 @@
 #include "bitarr.c"
 
 #include "ops.h"
-#define CHECK_OP_COUNT <CHECK_OP__COUNT>
+
+#define CHECK_OP_COUNT <CHECK_OP_COUNT>
 
 /*
     return_output_file
@@ -18,10 +19,15 @@
 */
 int main(int argc, char *argv[]) {
     clock_t t0, t1;
-    bitarr_t * check_results = bitarr_init(CHECK_OP_COUNT);
 
+    //This will store check results. Macros in ops.h use these!
+    bitarr_t * check_results = bitarr_init(CHECK_OP_COUNT);
+    unsigned check_index = 0;
+
+    /* 
+        A python script will auto-insert operations below:
+     */
     t0 = clock(); //Start timer
-    /* A python script will auto-insert operations here: */
     ///////////////////////////////////////////////////////
     <OPERATIONS>
     ///////////////////////////////////////////////////////
@@ -41,12 +47,3 @@ int main(int argc, char *argv[]) {
         fprintf(return_file, "%c\n" bitarr_check(check_results,i) ? 'T' : 'F');
     }
 }
-
-/*
-Idea:
-
-cmds.txt    - Contains commands insert/check of certain values
-time.log    - Outputs timing for each operation
-out.log     - Outputs return value for each operation
-
-*/
