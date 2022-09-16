@@ -1,7 +1,7 @@
 SRCDIR = ./code/src
 TSTDIR = ./code/tst
 UNITYDIR = ./code/lib/unity
-TEST_EXE_NAME = Test_DELETE_ME.exe
+TEST_EXE_NAME = test.generated.exe
 
 unit:
 	for test_file in $(TSTDIR)/* ; do \

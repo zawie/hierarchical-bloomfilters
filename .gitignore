@@ -11,3 +11,8 @@ core.*
 writeup/*
 !writeup/*.pdf
 !writeup/*.tex
+
+#Ignore generated files
+*.generated.*
+*DELETEME*
+*DELETE_ME*

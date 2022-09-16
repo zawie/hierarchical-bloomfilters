@@ -4,6 +4,7 @@
 
 #define NUM_BITS    1000
 #define NUM_HASHES  7
+
 void setUp(void)
 {
 

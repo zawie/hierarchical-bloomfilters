@@ -5,63 +5,22 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define BITS_PER_BYTE   8
-#define IS_VALID_INDEX (bitarr, index) ((bool) (((unsigned) index) < bitarr->num_bits)) //Used to check if an index is valid
-
 typedef unsigned char byte_t;
 
-typedef struct bit_array {
-    size_t num_bits;
-    size_t size;
-    byte_t* arr;
-} bitarr_t;
+#define BITS_PER_BYTE   8
 
-/**
- * Intializes a bit array of a specified size starting at a page boundary.
- * 
- * @param num_bits the number of bits desired in the bit array
- * @return a struct pointer representing the data structure
+#define GET_BYTE_INDEX(index)		(index/BITS_PER_BYTE)
+#define GET_BIT_INDEX(index)		(index % BITS_PER_BYTE)
+
+#define ROUND_BITS_TO_BYTES(bit_count)	((bit_count+BITS_PER_BYTE-1)/BITS_PER_BYTE)
+
+/*
+ * Bit arr operations as macros
  */
-bitarr_t * bitarr_init(unsigned num_bits);
-
-/**
- * Intializes a bit array at a predefined address with a specified starting at a page boundary.
- * 
- * @param num_bits the number of bits desired in the bit array
- * @return a struct pointer representing the data structure
- */
-void bitarr_init_at_addr(unsigned num_bits, bitarr_t * addr);
-
-/**
- * Frees all memory allocated to create the bit array
- * 
- * @param bitarr the bit array to free
- */
-void bitarr_free(bitarr_t * bitarr);
-
-/**
- * Sets the bit at the specified index.
- * 
- * @param bitarr the bit array to set
- * @param index the bit to set
- */
-void bitarr_set(bitarr_t * bitarr, unsigned index);
-
-/**
- * Unsets the bit at the specified index.
- * 
- * @param bitarr the bit array to modify
- * @param index the bit to unset
- */
-void bitarr_unset(bitarr_t * bitarr, unsigned index);
-
-
-/**
- * Checks whether the bit at the specified index is set.
- * 
- * @param bitarr the bit array to modify
- * @param index the bit to check
- */
-bool bitarr_check(bitarr_t * bitarr, unsigned index);
+#define INIT_BITARR(num_bits)		((byte_t*) valloc(ROUND_BITS_TO_BYTES(num_bits)))
+#define FREE_BITARR(bitarr_p)		(free((byte_t*) bitarr_p))
+#define SET_BITARR(bitarr_p, index)	(((byte_t*) bitarr_p)[GET_BYTE_INDEX(index)] |= (1 << GET_BIT_INDEX(index)))
+#define UNSET_BITARR(bitarr_p, index)	(((byte_t*) bitarr_p)[GET_BYTE_INDEX(index)] &= ~(1 << GET_BIT_INDEX(index)))
+#define CHECK_BITARR(bitarr_p, index)	((bool) (((byte_t*) bitarr_p)[GET_BYTE_INDEX(index)] & (1 << GET_BIT_INDEX(index))))
 
 #endif
