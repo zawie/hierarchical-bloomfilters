@@ -9,7 +9,6 @@ core.*
 
 #Ignore extra LaTeX artifacts
 writeup/*
-!writeup/*.pdf
 !writeup/*.tex
 
 #Ignore generated files
