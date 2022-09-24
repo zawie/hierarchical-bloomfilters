@@ -10,6 +10,7 @@ core.*
 #Ignore extra LaTeX artifacts
 writeup/*
 !writeup/*.tex
+!writeup/*.bib
 
 #Ignore generated files
 *.generated.*
