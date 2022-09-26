@@ -9,10 +9,13 @@ core.*
 
 #Ignore extra LaTeX artifacts
 writeup/*
-!writeup/*.pdf
 !writeup/*.tex
+!writeup/*.bib
 
 #Ignore generated files
 *.generated.*
 *DELETEME*
 *DELETE_ME*
+
+#Ignore 
+.DS_STORE
