@@ -3,7 +3,6 @@
 #include "../src/bloomfilter.c"
 
 #define NUM_BITS    1000
-#define NUM_HASHES  7
 
 void setUp(void)
 {
@@ -17,7 +16,7 @@ void tearDown(void)
 
 void test_insert(void)
 {
-    bloomfilt_t * bf = bloomfilter_init(NUM_BITS, NUM_HASHES);
+    bloomfilt_t * bf = bloomfilter_init(NUM_BITS);
 
     char * a = "anya is a badass";
     char * b = "rice university";
