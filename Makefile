@@ -2,7 +2,10 @@ SRCDIR = ./code/src
 TSTDIR = ./code/tst
 UNITYDIR = ./code/lib/unity
 TEST_EXE_NAME = test.generated.exe
+EXE_FILEPATH = ./bloomfilt
 
+build:
+	gcc $(SRCDIR)/main.c -o $(EXE_FILEPATH)
 unit:
 	for test_file in $(TSTDIR)/* ; do \
 		echo -e "-----------------------\nRunning test" $${test_file} "\n-----------------------"; \
@@ -12,4 +15,5 @@ unit:
 	done
 
 clean:
-	rm -f core.*
+	rm -f ./core.*
+	rm -f ./$(TEST_EXE_NAME)

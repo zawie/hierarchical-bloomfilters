@@ -8,9 +8,7 @@
 #include "bitarr.h"
 
 #include "hash.h"
-#include "hash.djb2.c"
 
-#define BITS_PER_ELEMENT                    10  //This is "n/m"
 #define BLOOMFILTER_HASH_FUNCTION_COUNT     7   //This is "k"
 
 typedef struct bloom_filter {

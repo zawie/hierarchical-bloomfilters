@@ -9,9 +9,7 @@
 #include "bitarr.h"
 
 #include "hash.h"
-#include "hash.djb2.c"
 
-#define BITS_PER_ELEMENT    10  //This is "n/m"
 #define BIT_SELECTORS       7   //This is "k"
 //Note: this implementation only works when there is one bloom filter selector; e.g l = 1
 

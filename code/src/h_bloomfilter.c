@@ -10,7 +10,7 @@ h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits) {
     h_bloomfilt_t *bf = (h_bloomfilt_t *) malloc(sizeof(h_bloomfilt_t));
     unsigned j;
     
-    unsigned num_bits = minimum_num_bits + (PAGE_SIZE_BITS - (minimum_num_bits % PAGE_SIZE_BITS));
+    unsigned num_bits = minimum_num_bits + (PAGE_SIZE_BITS - ( (minimum_num_bits-1) % PAGE_SIZE_BITS)) + 1;
 
     bf->bitarr = INIT_BITARR(num_bits);
     bf->num_bits = num_bits;
