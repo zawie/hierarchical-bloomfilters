@@ -10,3 +10,6 @@ unit:
 		./$(TEST_EXE_NAME); \
 		rm ./$(TEST_EXE_NAME); \
 	done
+
+clean:
+	rm -f core.*
