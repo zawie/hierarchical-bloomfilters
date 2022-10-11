@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
     int needed_bits = insert_keys_size*BITS_PER_ELEMENT;
     int actual_bits = needed_bits + (PAGE_SIZE_BITS - ((needed_bits-1) % PAGE_SIZE_BITS)) + 1;
 
-    printf("initialization information:\n\tcreating bloom filters with %i bits\n", actual_bits);
+    printf("bloom filter:\n\tsize:\t%f Megabytes (%i bits)\n\tpages:\t%i\n", ((double) actual_bits)/8000000.0, actual_bits, actual_bits/PAGE_SIZE_BITS);
 
     //Hierarchal bloom filter.
     h_bloomfilt_t * h_bf = h_bloomfilter_init(actual_bits);
