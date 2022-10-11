@@ -19,3 +19,10 @@ writeup/*
 
 #Ignore 
 .DS_STORE
+
+#Ignore generate date
+
+data/*
+
+#Ignore executables
+bloomfilt
