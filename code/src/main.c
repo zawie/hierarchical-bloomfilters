@@ -46,10 +46,16 @@ int main(int argc, char *argv[]) {
     const char **insert_keys;
     int insert_keys_size = parse_lines(insert_mapped, &insert_keys);
 
-    char * query_mapped = mmap(0, insert_stat.st_size, PROT_READ | PROT_WRITE, MAP_PRIVATE, query_fd, 0);
+    int query_keys_size;
+    char * query_mapped;
     const char **query_keys;
-    int query_keys_size = parse_lines(query_mapped, &query_keys);
 
+    if (query_stat.st_size > 0) {
+        query_mapped = mmap(0, query_stat.st_size, PROT_READ | PROT_WRITE, MAP_PRIVATE, query_fd, 0);
+        query_keys_size = parse_lines(query_mapped, &query_keys);
+    } else {
+        query_keys_size = 0;
+    }
     printf("Input overview\n");
     printf("\tinsert count:\t%i\n", insert_keys_size);
     printf("\tquery count:\t%i\n", query_keys_size);
@@ -115,8 +121,8 @@ int main(int argc, char *argv[]) {
         printf("\tregular num positives:\t%i\n", r_pos);
         printf("\tregular positive rate:\t%f\n", ((double) r_pos)/((double) query_keys_size));
 
-        printf("\thierarchial  num positives:\t%i\n", h_pos);
-        printf("\thierarchial  positive rate:\t%f\n", ((double) h_pos) / ((double) query_keys_size));
+        printf("\thierarchial num positives:\t%i\n", h_pos);
+        printf("\thierarchial positive rate:\t%f\n", ((double) h_pos) / ((double) query_keys_size));
     }
 
 }
