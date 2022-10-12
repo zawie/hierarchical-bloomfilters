@@ -1,0 +1,182 @@
+N=1000000
+Input
+	insert count:	500000
+	query count:	500000
+Bit array size
+	mb:	0.626688
+	bits:	5013506
+	pages:	153
+Times
+	regular ticks:	440000
+	regular seconds:	0.440000
+	hierarchial ticks:	350000
+	hierarchial seconds:	0.350000
+N=2000000
+Input
+	insert count:	1000000
+	query count:	1000000
+Bit array size
+	mb:	1.253376
+	bits:	10027010
+	pages:	306
+Times
+	regular ticks:	920000
+	regular seconds:	0.920000
+	hierarchial ticks:	730000
+	hierarchial seconds:	0.730000
+N=3000000
+Input
+	insert count:	1500000
+	query count:	1500000
+Bit array size
+	mb:	1.875968
+	bits:	15007746
+	pages:	458
+Times
+	regular ticks:	1380000
+	regular seconds:	1.380000
+	hierarchial ticks:	1090000
+	hierarchial seconds:	1.090000
+N=4000000
+Input
+	insert count:	2000000
+	query count:	2000000
+Bit array size
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+Times
+	regular ticks:	1950000
+	regular seconds:	1.950000
+	hierarchial ticks:	1530000
+	hierarchial seconds:	1.530000
+N=5000000
+Input
+	insert count:	2500000
+	query count:	2500000
+Bit array size
+	mb:	3.125248
+	bits:	25001986
+	pages:	763
+Times
+	regular ticks:	2330000
+	regular seconds:	2.330000
+	hierarchial ticks:	1840000
+	hierarchial seconds:	1.840000
+N=6000000
+Input
+	insert count:	3000000
+	query count:	3000000
+Bit array size
+	mb:	3.751936
+	bits:	30015490
+	pages:	916
+Times
+	regular ticks:	2800000
+	regular seconds:	2.800000
+	hierarchial ticks:	2210000
+	hierarchial seconds:	2.210000
+N=7000000
+Input
+	insert count:	3500000
+	query count:	3500000
+Bit array size
+	mb:	4.378624
+	bits:	35028994
+	pages:	1069
+Times
+	regular ticks:	3350000
+	regular seconds:	3.350000
+	hierarchial ticks:	2650000
+	hierarchial seconds:	2.650000
+N=8000000
+Input
+	insert count:	4000000
+	query count:	4000000
+Bit array size
+	mb:	5.001216
+	bits:	40009730
+	pages:	1221
+Times
+	regular ticks:	3760000
+	regular seconds:	3.760000
+	hierarchial ticks:	2990000
+	hierarchial seconds:	2.990000
+N=9000000
+Input
+	insert count:	4500000
+	query count:	4500000
+Bit array size
+	mb:	5.627904
+	bits:	45023234
+	pages:	1374
+Times
+	regular ticks:	4300000
+	regular seconds:	4.300000
+	hierarchial ticks:	3370000
+	hierarchial seconds:	3.370000
+N=10000000
+Input
+	insert count:	5000000
+	query count:	5000000
+Bit array size
+	mb:	6.250496
+	bits:	50003970
+	pages:	1526
+Times
+	regular ticks:	4870000
+	regular seconds:	4.870000
+	hierarchial ticks:	3720000
+	hierarchial seconds:	3.720000
+N=13000000
+Input
+	insert count:	6500000
+	query count:	6500000
+Bit array size
+	mb:	8.126464
+	bits:	65011714
+	pages:	1984
+Times
+	regular ticks:	6330000
+	regular seconds:	6.330000
+	hierarchial ticks:	4830000
+	hierarchial seconds:	4.830000
+N=14000000
+Input
+	insert count:	7000000
+	query count:	7000000
+Bit array size
+	mb:	8.753152
+	bits:	70025218
+	pages:	2137
+Times
+	regular ticks:	6980000
+	regular seconds:	6.980000
+	hierarchial ticks:	5310000
+	hierarchial seconds:	5.310000
+N=15000000
+Input
+	insert count:	7500000
+	query count:	7500000
+Bit array size
+	mb:	9.375744
+	bits:	75005954
+	pages:	2289
+Times
+	regular ticks:	7400000
+	regular seconds:	7.400000
+	hierarchial ticks:	5630000
+	hierarchial seconds:	5.630000
+N=16000000
+Input
+	insert count:	8000000
+	query count:	8000000
+Bit array size
+	mb:	10.002432
+	bits:	80019458
+	pages:	2442
+Times
+	regular ticks:	7810000
+	regular seconds:	7.810000
+	hierarchial ticks:	5990000
+	hierarchial seconds:	5.990000

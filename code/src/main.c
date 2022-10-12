@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
         h_bloomfilter_check(h_bf, (char *) query_keys[i]);
     t1 = clock(); //End timer
 
-    printf("\n\thierarchial ticks:\t%i\n", t1 - t0);
+    printf("\thierarchial ticks:\t%i\n", t1 - t0);
     printf("\thierarchial seconds:\t%f\n", ((double) (t1 - t0)) / CLOCKS_PER_SEC);
 
 }
