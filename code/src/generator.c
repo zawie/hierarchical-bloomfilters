@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
     int i;
     for(i = 0; i < amount*(key_size+1) - 1; i++) {
-        if ((i+1) % BUFF_SIZE == 0)  
+        if (i > 0 && i % BUFF_SIZE == 0)  
             write(fd, w_buff, BUFF_SIZE);
         w_buff[i % BUFF_SIZE] = ((i+1) % (key_size+1) == 0) ? '\n' : '!' + rand()%94;
     }
