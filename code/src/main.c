@@ -28,12 +28,12 @@ int parse_lines (char * mapped, const char *** lines_output);
 int main(int argc, char *argv[]) {
     clock_t t0, t1;
     double regular_time, hierarchical_time;
-
+    
     int i;
 
     const char * insert_filename = argv[1];
     const char * query_filename  = argv[2];
-    
+
     //Open files
     int insert_fd = open(insert_filename, O_RDONLY);
     int query_fd = open(query_filename, O_RDONLY);
@@ -57,8 +57,8 @@ int main(int argc, char *argv[]) {
     /*
         Initialize bloom filters
     */
-    int needed_bits = insert_keys_size*BITS_PER_ELEMENT;
-    int actual_bits = needed_bits + (PAGE_SIZE_BITS - ((needed_bits-1) % PAGE_SIZE_BITS)) + 1;
+    int requested_bits = (argc == 4) ? atoi(argv[3]) : insert_keys_size*BITS_PER_ELEMENT;
+    int actual_bits = requested_bits + (PAGE_SIZE_BITS - ((requested_bits-1) % PAGE_SIZE_BITS)) + 1;
 
     printf("Bit array size\n");
     printf("\tmb:\t%f\n", ((double) actual_bits)/8000000.0);

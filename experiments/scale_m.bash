@@ -1,21 +1,25 @@
-TIMESTAMP=`date +%F_%T`
-OUTPUT_FILE="results/results_$TIMESTAMP.csv"
+TIMESTAMP=`date +%F-%T`
+OUTPUT_FILE="experiments/results/scale-m_$TIMESTAMP.csv"
 
 #Write header
 echo "# Inserts,# Queries,Size (Pages),Regular Time (seconds),Hierarchial (seconds)" >> $OUTPUT_FILE
 
+N=5000000
+
+#Generate data
+echo "Generating $N inserts and $N queries..."
+./gen data/inserts 8 $N > /dev/null
+./gen data/queries 8 $N > /dev/null
+
+echo "Beginning experiments..."
 #Run experiments
-for N in 500000 5000000 50000000 500000000
+for M in 5000000 50000000 500000000 5000000000
 do
     #Output progress to stdout
-    echo N=$N
-
-    #Generate data
-    ./gen data/inserts 8 $N > /dev/null
-    ./gen data/queries 8 $N > /dev/null
+    echo M=$M
 
     #Run experiments
-    RESULT=`./bloomfilt data/inserts data/queries`
+    RESULT=`./bloomfilt data/inserts data/queries $M`
 
     #Parse results
     NUM_INSERTS=`grep -oP 'insert count:\s*\K\d+' <<< "$RESULT"`
@@ -28,7 +32,7 @@ do
 
     #Output results to stdout
     echo "regular:   $R_SECONDS (s)"
-    echo "regular:   $H_SECONDS (s)"
+    echo "hierarchial:   $H_SECONDS (s)"
 
     #Write results to row
     echo "$NUM_INSERTS,$NUM_QUERIES,$PAGE_COUNT,$R_SECONDS,$H_SECONDS" >> $OUTPUT_FILE
