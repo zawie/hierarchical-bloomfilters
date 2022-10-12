@@ -22,3 +22,6 @@ clean:
 	rm -f ./$(TEST_EXE_NAME)
 	rm gen
 	rm bloomfilt
+
+clean_dats:
+	rm experiments/dats/*.dat
