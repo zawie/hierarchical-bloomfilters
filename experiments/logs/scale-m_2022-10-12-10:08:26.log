@@ -1,0 +1,24 @@
+Input
+	insert count:	10000000
+	query count:	10000000
+Bit array size
+	mb:	-99.483648
+	bits:	-795869182
+	pages:	106784
+Times
+	regular ticks:	22490000
+	regular seconds:	22.490000
+	hierarchial ticks:	21580000
+	hierarchial seconds:	21.580000
+Input
+	insert count:	10000000
+	query count:	10000000
+Bit array size
+	mb:	-198.967296
+	bits:	-1591738366
+	pages:	82496
+Times
+	regular ticks:	20910000
+	regular seconds:	20.910000
+	hierarchial ticks:	15800000
+	hierarchial seconds:	15.800000
