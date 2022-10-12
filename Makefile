@@ -2,10 +2,13 @@ SRCDIR = ./code/src
 TSTDIR = ./code/tst
 UNITYDIR = ./code/lib/unity
 TEST_EXE_NAME = test.generated.exe
-EXE_FILEPATH = ./bloomfilt
+MAIN_FILEPATH = ./bloomfilt
+GEN_FILEPATH = ./gen
 
 build:
-	gcc $(SRCDIR)/main.c -o $(EXE_FILEPATH)
+	gcc $(SRCDIR)/main.c -o $(MAIN_FILEPATH)
+	gcc $(SRCDIR)/generator.c -o $(GEN_FILEPATH)
+
 unit:
 	for test_file in $(TSTDIR)/* ; do \
 		echo -e "-----------------------\nRunning test" $${test_file} "\n-----------------------"; \
