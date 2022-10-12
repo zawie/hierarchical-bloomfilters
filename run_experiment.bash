@@ -1,14 +1,20 @@
-echo "# Inserts,# Queries,Size (Pages),Regular Time (s),Hierarchial (s)" >> output.csv
-for N in 50000
+TIMESTAMP=`date +%F_%T`
+OUTPUT_FILE="results/results_$TIMESTAMP.csv"
+
+#Write header
+echo "# Inserts,# Queries,Size (Pages),Regular Time (seconds),Hierarchial (seconds)" >> $OUTPUT_FILE
+
+#Run experiments
+for N in 500000 5000000 50000000 500000000
 do
+    #Output progress to stdout
     echo N=$N
 
     #Generate data
-    ./gen data/inserts 8 $N
-    ./gen data/queries 8 $N
+    ./gen data/inserts 8 $N > /dev/null
+    ./gen data/queries 8 $N > /dev/null
 
     #Run experiments
-    echo Running timing script...
     RESULT=`./bloomfilt data/inserts data/queries`
 
     #Parse results
@@ -17,9 +23,14 @@ do
 
     PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$RESULT"`
 
-    R_SECONDS=`grep -oP 'regular seconds:\s*\K\d+' <<< "$RESULT"`
-    H_SECONDS=`grep -oP 'hierarchial seconds:\s*\K\d+' <<< "$RESULT"`
+    R_SECONDS=`grep -oP 'regular seconds:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
+    H_SECONDS=`grep -oP 'hierarchial seconds:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
 
-    echo "$NUM_INSERTS,$NUM_QUERIES,$PAGE_COUNT,$R_SECONDS,$H_SECONDS" >> output.csv
+    #Output results to stdout
+    echo "regular:   $R_SECONDS (s)"
+    echo "regular:   $H_SECONDS (s)"
+
+    #Write results to row
+    echo "$NUM_INSERTS,$NUM_QUERIES,$PAGE_COUNT,$R_SECONDS,$H_SECONDS" >> $OUTPUT_FILE
 
 done
