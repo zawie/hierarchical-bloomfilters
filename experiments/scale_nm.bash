@@ -5,7 +5,7 @@ OUTPUT_FILE="experiments/results/scale-nm_$TIMESTAMP.csv"
 echo "# Inserts,# Queries,Size (Pages),Regular Time (seconds),Hierarchial (seconds)" >> $OUTPUT_FILE
 
 #Run experiments
-for N in 500000 5000000 50000000
+for N in $@
 do
     #Output progress to stdout
     echo N=$N

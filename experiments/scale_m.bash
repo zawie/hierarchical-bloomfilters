@@ -1,10 +1,14 @@
 TIMESTAMP=`date +%F-%T`
-OUTPUT_FILE="experiments/results/scale-m_$TIMESTAMP.csv"
 
-#Write header
-echo "# Inserts,# Queries,Size (Pages),Regular Time (seconds),Hierarchial (seconds)" >> $OUTPUT_FILE
+DAT_FILE="experiments/dats/scale-m_$TIMESTAMP.dat"
 
-N=10000000
+#N=10000000
+N=100000
+
+echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
+echo "# N=$N" >> $DAT_FILE
+echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
+echo "#pages   regular (seconds)    hierarchal (seconds)" >> $DAT_FILE
 
 #Generate data
 echo "Generating $N inserts and $N queries..."
@@ -13,18 +17,17 @@ echo "Generating $N inserts and $N queries..."
 
 echo "Beginning experiments..."
 #Run experiments
-for M in 10000 100000 1000000 10000000
+for P in $@
 do 
+    #Compute bit count from pages
+    M=$(($P*4096*8))
+    
     #Output progress to stdout
-    echo M=$M
-
+    echo "P=$P (M=$M)"
     #Run experiments
     RESULT=`./bloomfilt data/inserts data/queries $M`
 
     #Parse results
-    NUM_INSERTS=`grep -oP 'insert count:\s*\K\d+' <<< "$RESULT"`
-    NUM_QUERIES=`grep -oP 'query count:\s*\K\d+' <<< "$RESULT"`
-
     PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$RESULT"`
 
     R_SECONDS=`grep -oP 'regular seconds:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
@@ -35,6 +38,9 @@ do
     echo "hierarchial:   $H_SECONDS (s)"
 
     #Write results to row
-    echo "$NUM_INSERTS,$NUM_QUERIES,$PAGE_COUNT,$R_SECONDS,$H_SECONDS" >> $OUTPUT_FILE
+    echo "$PAGE_COUNT   $R_SECONDS  $H_SECONDS" >> $DAT_FILE
 
 done
+
+#Plot
+./plots/scale_m_plotter.bash $DAT_FILE
