@@ -3,9 +3,9 @@ PLOT_FILE="plots/scale-m.png"
 gnuplot -persist <<-EOFMarker
     set title "Duration vs. Bloom Filter Size"
     set xlabel "Bloom Filter Size (Pages)"
-    set ylabel "Duration (Seconds)"
-    set key left top
-    
+    set ylabel "Throughput (Operations / Second)"
+    set key right center
+
     set autoscale 
     set grid
 

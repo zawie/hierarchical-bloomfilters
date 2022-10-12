@@ -16,7 +16,8 @@
 #include "h_bloomfilter.h"
 #include "h_bloomfilter.c"
 
-#define BITS_PER_ELEMENT                    10  //This is "n/m"
+#define BITS_PER_ELEMENT    10  //This is "n/m"
+#define MIL                 1000000
 
 //Prototypes
 int parse_lines (char * mapped, const char *** lines_output);
@@ -64,7 +65,9 @@ int main(int argc, char *argv[]) {
 
     printf("Input overview\n");
     printf("\tinsert count:\t%i\n", insert_keys_size);
+    printf("\tinsert count in millions:\t%f\n", ((double) insert_keys_size) / MIL);
     printf("\tquery count:\t%i\n", query_keys_size);
+    printf("\tquery count millions:\t%f\n",  ((double) query_keys_size) / MIL);
 
     /*
         Initialize bloom filters

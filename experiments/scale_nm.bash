@@ -10,9 +10,8 @@ make
 
 #Write header
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
-echo "# N=$N" >> $DAT_FILE
 echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
-echo "#n   regular (seconds)    hierarchial (seconds)" >> $DAT_FILE
+echo "#n (1e6)   regular (s)    hierarchal (s)" >> $DAT_FILE
 
 #Run experiments
 for N in $@
@@ -29,20 +28,24 @@ do
     echo "$RESULT" >> $LOG_FILE
 
     #Parse results
-    NUM_INSERTS=`grep -oP 'insert count:\s*\K\d+' <<< "$RESULT"`
-    NUM_QUERIES=`grep -oP 'query count:\s*\K\d+' <<< "$RESULT"`
-
     PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$RESULT"`
-
+   
     R_SECONDS=`grep -oP 'regular seconds:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
     H_SECONDS=`grep -oP 'hierarchial seconds:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
+    R_THRU=`grep -oP 'regular throughput:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
+    H_THRU=`grep -oP 'hierarchial throughput:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
+    N_IN_MIL=`grep -oP 'insert count in millions:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
 
     #Output results to stdout
+    echo "n (1e6) : $N_IN_MIL"
+    echo "pages count:  $PAGE_COUNT"
     echo "regular:   $R_SECONDS (s)"
+    echo "regular:   $R_THRU (ops/s)"
     echo "hierarchial:   $H_SECONDS (s)"
+    echo "hierarchial:   $H_THRU (ops/s)"
 
     #Write results to row
-    echo "$N    $R_SECONDS    $H_SECONDS" >> $DAT_FILE
+    echo "$N_IN_MIL    $R_SECONDS    $H_SECONDS" >> $DAT_FILE
 
     #Update plot, ignoring errors or warnings
     ./plots/scale_nm_plotter.bash $DAT_FILE > /dev/null

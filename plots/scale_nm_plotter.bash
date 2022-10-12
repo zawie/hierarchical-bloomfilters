@@ -2,8 +2,8 @@ PLOT_FILE="plots/scale-nm.png"
 #Make plot
 gnuplot -persist <<-EOFMarker
     set title "Duration vs. Number of Insertions"
-    set xlabel "Number of Insertions (#)"
-    set ylabel "Duration (Seconds)"
+    set xlabel "Insertions in Millions"
+    set ylabel "Duration (seconds)"
     set key left top
     
     set autoscale 
