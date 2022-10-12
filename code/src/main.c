@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     const char **query_keys;
     int query_keys_size = parse_lines(query_mapped, &query_keys);
 
-    printf("Input\n");
+    printf("Input overview\n");
     printf("\tinsert count:\t%i\n", insert_keys_size);
     printf("\tquery count:\t%i\n", query_keys_size);
 
@@ -74,14 +74,12 @@ int main(int argc, char *argv[]) {
     /*
         Time inserts on regular bloom filter
     */
-     printf("Times\n");
+     printf("Insertion timing\n");
 
     //Regular bloom filter
     t0 = clock(); //Start timer
     for (i = 0; i < insert_keys_size; i++)
         bloomfilter_insert(reg_bf, (char *) insert_keys[i]);
-    for (i = 0; i < query_keys_size; i++)
-        bloomfilter_check(reg_bf, (char *) query_keys[i]);
     t1 = clock(); //End timer
 
     printf("\tregular ticks:\t%i\n", t1 - t0);
@@ -91,12 +89,35 @@ int main(int argc, char *argv[]) {
     t0 = clock(); //Start timer
     for (i = 0; i < insert_keys_size; i++) 
         h_bloomfilter_insert(h_bf, (char *) insert_keys[i]);
-    for (i = 0; i < query_keys_size; i++) 
-        h_bloomfilter_check(h_bf, (char *) query_keys[i]);
     t1 = clock(); //End timer
 
     printf("\thierarchial ticks:\t%i\n", t1 - t0);
     printf("\thierarchial seconds:\t%f\n", ((double) (t1 - t0)) / CLOCKS_PER_SEC);
+
+    /*
+        Compute accuracy
+    */
+    printf("Query positives\n");
+
+    int r_pos = 0;
+    int h_pos = 0;
+
+    for (i = 0; i < query_keys_size; i++) {
+        if (bloomfilter_check(reg_bf, (char *) query_keys[i]))
+            r_pos++;
+        if(h_bloomfilter_check(h_bf, (char *) query_keys[i]))
+            h_pos++;
+    }
+
+    printf("\ttotal tests:\t%i\n", query_keys_size);
+
+    if (query_keys_size > 0) {
+        printf("\tregular num positives:\t%i\n", r_pos);
+        printf("\tregular positive rate:\t%f\n", ((double) r_pos)/((double) query_keys_size));
+
+        printf("\thierarchial  num positives:\t%i\n", h_pos);
+        printf("\thierarchial  positive rate:\t%f\n", ((double) h_pos) / ((double) query_keys_size));
+    }
 
 }
 
