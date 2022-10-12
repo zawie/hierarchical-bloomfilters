@@ -1,5 +1,5 @@
 TIMESTAMP=`date +%F_%T`
-OUTPUT_FILE="experiments/results/nm_$TIMESTAMP.csv"
+OUTPUT_FILE="experiments/results/scale-nm_$TIMESTAMP.csv"
 
 #Write header
 echo "# Inserts,# Queries,Size (Pages),Regular Time (seconds),Hierarchial (seconds)" >> $OUTPUT_FILE

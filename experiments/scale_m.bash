@@ -4,7 +4,7 @@ OUTPUT_FILE="experiments/results/scale-m_$TIMESTAMP.csv"
 #Write header
 echo "# Inserts,# Queries,Size (Pages),Regular Time (seconds),Hierarchial (seconds)" >> $OUTPUT_FILE
 
-N=5000000
+N=10000000
 
 #Generate data
 echo "Generating $N inserts and $N queries..."
@@ -13,8 +13,8 @@ echo "Generating $N inserts and $N queries..."
 
 echo "Beginning experiments..."
 #Run experiments
-for M in 5000000 50000000 500000000 5000000000
-do
+for M in 10000 100000 1000000 10000000
+do 
     #Output progress to stdout
     echo M=$M
 
