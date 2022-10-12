@@ -3,11 +3,12 @@ PLOT_FILE="plots/fp.png"
 gnuplot -persist <<-EOFMarker
     set title "False Positive Rate vs Bits per Element"
     set xlabel "Bits per Element"
-    set ylabel "False Positive Rate"
-    set key top right
+    set ylabel "False Positive Rate (log scaled)"
+    set key bottom left
 
     set autoscale 
     set grid
+    set logscale y 10
 
     set term png   
     set output "$PLOT_FILE"

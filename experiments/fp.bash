@@ -6,7 +6,7 @@ LOG_FILE="experiments/logs/$ID.log"
 INSERTS_KEYS="data/insert_$ID.txt"
 QUERY_KEYS="data/query_$ID.txt"
 
-N=1000000
+N=2000000
 
 #Make executables
 make 
