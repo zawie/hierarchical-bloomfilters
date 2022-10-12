@@ -1,7 +1,9 @@
 TIMESTAMP=`date +%F-%T`
 
-DAT_FILE="experiments/dats/scale-m_$TIMESTAMP.dat"
-LOG_FILE="experiments/logs/scale-m_$TIMESTAMP.log"
+ID="scale-m_$TIMESTAMP"
+DAT_FILE="experiments/dats/$ID.dat"
+LOG_FILE="experiments/logs/$ID.log"
+DATA_FILE="data/$ID.txt"
 
 N=10000000
 
@@ -11,9 +13,8 @@ echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
 echo "#pages   regular (seconds)    hierarchal (seconds)" >> $DAT_FILE
 
 #Generate data
-echo "Generating $N inserts and $N queries..."
-./gen data/inserts 8 $N > /dev/null
-./gen data/queries 8 $N > /dev/null
+echo "Generating $N keys to inserts"
+./gen $DATA_FILE 8 $N > /dev/null
 
 echo "Beginning experiments..."
 #Run experiments
@@ -26,7 +27,7 @@ do
     echo "P=$P (M=$M)"
     
     #Run experiments
-    RESULT=`./bloomfilt data/inserts data/queries $M`
+    RESULT=`./bloomfilt $DATA_FILE /dev/null $M`
     echo "$RESULT" >> $LOG_FILE
 
     #Parse results
@@ -45,3 +46,6 @@ do
     #Update plot
     ./plots/scale_m_plotter.bash $DAT_FILE
 done
+
+#Clean up generated data
+rm $DATA_FILE

@@ -1,6 +1,9 @@
 TIMESTAMP=`date +%F_%T`
-DAT_FILE="experiments/dats/scale-nm_$TIMESTAMP.dat"
-LOG_FILE="experiments/logs/scale-nm_$TIMESTAMP.log"
+
+ID="scale-nm_$TIMESTAMP"
+DAT_FILE="experiments/dats/$ID.dat"
+LOG_FILE="experiments/logs/$ID.log"
+DATA_FILE="data/$ID.txt"
 
 #Write header
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
@@ -9,18 +12,16 @@ echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
 echo "#n   regular (seconds)    hierarchial (seconds)" >> $DAT_FILE
 
 #Run experiments
-for K in $@
+for N in $@
 do
     #Output progress to stdout
-    N=$(($K*2))
-    echo "N=$N (K=$K)"
+    echo "N=$N"
 
     #Generate data
-    ./gen data/inserts 8 $K > /dev/null
-    ./gen data/queries 8 $K > /dev/null
+    ./gen $DATA_FILE 8 $N > /dev/null
 
     #Run experiments
-    RESULT=`./bloomfilt data/inserts data/queries`
+    RESULT=`./bloomfilt data/inserts /dev/null`
     echo "N=$N" >> $LOG_FILE
     echo "$RESULT" >> $LOG_FILE
 
@@ -44,3 +45,5 @@ do
     ./plots/scale_nm_plotter.bash $DAT_FILE
 done
 
+#Clean up generated data file
+rm $DATA_FILE
