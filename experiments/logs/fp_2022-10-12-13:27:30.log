@@ -1,0 +1,225 @@
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	1000000
+Bit array size
+	mb:	0.126976
+	bits:	1015810
+	pages:	31
+	bits per elements:	1.015810
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	670000
+	regular seconds:	0.670000
+	regular throughput:	1492537.313433 (ops/s)
+	hierarchial ticks:	590000
+	hierarchial seconds:	0.590000
+	hierarchial throughput:	1694915.254237 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	995739
+	regular positive rate:	0.995739
+	hierarchial num positives:	1000000
+	hierarchial positive rate:	1.000000
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	2000000
+Bit array size
+	mb:	0.253952
+	bits:	2031618
+	pages:	62
+	bits per elements:	2.031618
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	690000
+	regular seconds:	0.690000
+	regular throughput:	1449275.362319 (ops/s)
+	hierarchial ticks:	630000
+	hierarchial seconds:	0.630000
+	hierarchial throughput:	1587301.587302 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	798801
+	regular positive rate:	0.798801
+	hierarchial num positives:	787597
+	hierarchial positive rate:	0.787597
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	3000000
+Bit array size
+	mb:	0.376832
+	bits:	3014658
+	pages:	92
+	bits per elements:	3.014658
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	670000
+	regular seconds:	0.670000
+	regular throughput:	1492537.313433 (ops/s)
+	hierarchial ticks:	620000
+	hierarchial seconds:	0.620000
+	hierarchial throughput:	1612903.225806 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	485110
+	regular positive rate:	0.485110
+	hierarchial num positives:	478474
+	hierarchial positive rate:	0.478474
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	5000000
+Bit array size
+	mb:	0.626688
+	bits:	5013506
+	pages:	153
+	bits per elements:	5.013506
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	710000
+	regular seconds:	0.710000
+	regular throughput:	1408450.704225 (ops/s)
+	hierarchial ticks:	650000
+	hierarchial seconds:	0.650000
+	hierarchial throughput:	1538461.538462 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	137020
+	regular positive rate:	0.137020
+	hierarchial num positives:	639132
+	hierarchial positive rate:	0.639132
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	7000000
+Bit array size
+	mb:	0.876544
+	bits:	7012354
+	pages:	214
+	bits per elements:	7.012354
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	700000
+	regular seconds:	0.700000
+	regular throughput:	1428571.428571 (ops/s)
+	hierarchial ticks:	630000
+	hierarchial seconds:	0.630000
+	hierarchial throughput:	1587301.587302 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	39648
+	regular positive rate:	0.039648
+	hierarchial num positives:	41392
+	hierarchial positive rate:	0.041392
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	11000000
+Bit array size
+	mb:	1.376256
+	bits:	11010050
+	pages:	336
+	bits per elements:	11.010050
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	730000
+	regular seconds:	0.730000
+	regular throughput:	1369863.013699 (ops/s)
+	hierarchial ticks:	640000
+	hierarchial seconds:	0.640000
+	hierarchial throughput:	1562500.000000 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	5076
+	regular positive rate:	0.005076
+	hierarchial num positives:	5611
+	hierarchial positive rate:	0.005611
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	13000000
+Bit array size
+	mb:	1.626112
+	bits:	13008898
+	pages:	397
+	bits per elements:	13.008898
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	760000
+	regular seconds:	0.760000
+	regular throughput:	1315789.473684 (ops/s)
+	hierarchial ticks:	670000
+	hierarchial seconds:	0.670000
+	hierarchial throughput:	1492537.313433 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	2171
+	regular positive rate:	0.002171
+	hierarchial num positives:	56053
+	hierarchial positive rate:	0.056053
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	17000000
+Bit array size
+	mb:	2.125824
+	bits:	17006594
+	pages:	519
+	bits per elements:	17.006594
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	720000
+	regular seconds:	0.720000
+	regular throughput:	1388888.888889 (ops/s)
+	hierarchial ticks:	640000
+	hierarchial seconds:	0.640000
+	hierarchial throughput:	1562500.000000 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	505
+	regular positive rate:	0.000505
+	hierarchial num positives:	765800
+	hierarchial positive rate:	0.765800
+Input overview
+	insert count:	1000000
+	insert count in millions:	1.000000
+	query count:	1000000
+	query count millions:	1.000000
+	requested bits:	29000000
+Bit array size
+	mb:	3.629056
+	bits:	29032450
+	pages:	886
+	bits per elements:	29.032450
+Insertion timing
+	number of ops:	1000000
+	regular ticks:	710000
+	regular seconds:	0.710000
+	regular throughput:	1408450.704225 (ops/s)
+	hierarchial ticks:	640000
+	hierarchial seconds:	0.640000
+	hierarchial throughput:	1562500.000000 (ops/s)
+Query positives
+	total tests:	1000000
+	regular num positives:	18
+	regular positive rate:	0.000018
+	hierarchial num positives:	35
+	hierarchial positive rate:	0.000035

@@ -9,12 +9,12 @@ Bit array size
 	pages:	1
 Insertion timing
 	number of ops:	10000000
-	regular ticks:	4030000
-	regular seconds:	4.030000
-	regular throughput:	2481389.578164 (ops/s)
-	hierarchial ticks:	3350000
-	hierarchial seconds:	3.350000
-	hierarchial throughput:	2985074.626866 (ops/s)
+	regular ticks:	4050000
+	regular seconds:	4.050000
+	regular throughput:	2469135.802469 (ops/s)
+	hierarchial ticks:	3380000
+	hierarchial seconds:	3.380000
+	hierarchial throughput:	2958579.881657 (ops/s)
 Query positives
 	total tests:	0
 Input overview
@@ -28,12 +28,12 @@ Bit array size
 	pages:	2
 Insertion timing
 	number of ops:	10000000
-	regular ticks:	4040000
-	regular seconds:	4.040000
-	regular throughput:	2475247.524752 (ops/s)
-	hierarchial ticks:	3350000
-	hierarchial seconds:	3.350000
-	hierarchial throughput:	2985074.626866 (ops/s)
+	regular ticks:	4070000
+	regular seconds:	4.070000
+	regular throughput:	2457002.457002 (ops/s)
+	hierarchial ticks:	3440000
+	hierarchial seconds:	3.440000
+	hierarchial throughput:	2906976.744186 (ops/s)
 Query positives
 	total tests:	0
 Input overview
@@ -66,12 +66,12 @@ Bit array size
 	pages:	4
 Insertion timing
 	number of ops:	10000000
-	regular ticks:	3990000
-	regular seconds:	3.990000
-	regular throughput:	2506265.664160 (ops/s)
-	hierarchial ticks:	3350000
-	hierarchial seconds:	3.350000
-	hierarchial throughput:	2985074.626866 (ops/s)
+	regular ticks:	4060000
+	regular seconds:	4.060000
+	regular throughput:	2463054.187192 (ops/s)
+	hierarchial ticks:	3370000
+	hierarchial seconds:	3.370000
+	hierarchial throughput:	2967359.050445 (ops/s)
 Query positives
 	total tests:	0
 Input overview
@@ -85,12 +85,12 @@ Bit array size
 	pages:	5
 Insertion timing
 	number of ops:	10000000
-	regular ticks:	4080000
-	regular seconds:	4.080000
-	regular throughput:	2450980.392157 (ops/s)
-	hierarchial ticks:	3390000
-	hierarchial seconds:	3.390000
-	hierarchial throughput:	2949852.507375 (ops/s)
+	regular ticks:	4060000
+	regular seconds:	4.060000
+	regular throughput:	2463054.187192 (ops/s)
+	hierarchial ticks:	3370000
+	hierarchial seconds:	3.370000
+	hierarchial throughput:	2967359.050445 (ops/s)
 Query positives
 	total tests:	0
 Input overview
@@ -102,6 +102,63 @@ Bit array size
 	mb:	0.028672
 	bits:	229378
 	pages:	7
+Insertion timing
+	number of ops:	10000000
+	regular ticks:	4080000
+	regular seconds:	4.080000
+	regular throughput:	2450980.392157 (ops/s)
+	hierarchial ticks:	3400000
+	hierarchial seconds:	3.400000
+	hierarchial throughput:	2941176.470588 (ops/s)
+Query positives
+	total tests:	0
+Input overview
+	insert count:	10000000
+	insert count in millions:	10.000000
+	query count:	0
+	query count millions:	0.000000
+Bit array size
+	mb:	0.032768
+	bits:	262146
+	pages:	8
+Insertion timing
+	number of ops:	10000000
+	regular ticks:	4050000
+	regular seconds:	4.050000
+	regular throughput:	2469135.802469 (ops/s)
+	hierarchial ticks:	3340000
+	hierarchial seconds:	3.340000
+	hierarchial throughput:	2994011.976048 (ops/s)
+Query positives
+	total tests:	0
+Input overview
+	insert count:	10000000
+	insert count in millions:	10.000000
+	query count:	0
+	query count millions:	0.000000
+Bit array size
+	mb:	0.036864
+	bits:	294914
+	pages:	9
+Insertion timing
+	number of ops:	10000000
+	regular ticks:	4120000
+	regular seconds:	4.120000
+	regular throughput:	2427184.466019 (ops/s)
+	hierarchial ticks:	3390000
+	hierarchial seconds:	3.390000
+	hierarchial throughput:	2949852.507375 (ops/s)
+Query positives
+	total tests:	0
+Input overview
+	insert count:	10000000
+	insert count in millions:	10.000000
+	query count:	0
+	query count millions:	0.000000
+Bit array size
+	mb:	0.040960
+	bits:	327682
+	pages:	10
 Insertion timing
 	number of ops:	10000000
 	regular ticks:	4030000
@@ -118,74 +175,17 @@ Input overview
 	query count:	0
 	query count millions:	0.000000
 Bit array size
-	mb:	0.032768
-	bits:	262146
-	pages:	8
-Insertion timing
-	number of ops:	10000000
-	regular ticks:	4100000
-	regular seconds:	4.100000
-	regular throughput:	2439024.390244 (ops/s)
-	hierarchial ticks:	3410000
-	hierarchial seconds:	3.410000
-	hierarchial throughput:	2932551.319648 (ops/s)
-Query positives
-	total tests:	0
-Input overview
-	insert count:	10000000
-	insert count in millions:	10.000000
-	query count:	0
-	query count millions:	0.000000
-Bit array size
-	mb:	0.036864
-	bits:	294914
-	pages:	9
-Insertion timing
-	number of ops:	10000000
-	regular ticks:	4010000
-	regular seconds:	4.010000
-	regular throughput:	2493765.586035 (ops/s)
-	hierarchial ticks:	3400000
-	hierarchial seconds:	3.400000
-	hierarchial throughput:	2941176.470588 (ops/s)
-Query positives
-	total tests:	0
-Input overview
-	insert count:	10000000
-	insert count in millions:	10.000000
-	query count:	0
-	query count millions:	0.000000
-Bit array size
-	mb:	0.040960
-	bits:	327682
-	pages:	10
-Insertion timing
-	number of ops:	10000000
-	regular ticks:	4090000
-	regular seconds:	4.090000
-	regular throughput:	2444987.775061 (ops/s)
-	hierarchial ticks:	3380000
-	hierarchial seconds:	3.380000
-	hierarchial throughput:	2958579.881657 (ops/s)
-Query positives
-	total tests:	0
-Input overview
-	insert count:	10000000
-	insert count in millions:	10.000000
-	query count:	0
-	query count millions:	0.000000
-Bit array size
 	mb:	0.061440
 	bits:	491522
 	pages:	15
 Insertion timing
 	number of ops:	10000000
-	regular ticks:	4030000
-	regular seconds:	4.030000
-	regular throughput:	2481389.578164 (ops/s)
-	hierarchial ticks:	3360000
-	hierarchial seconds:	3.360000
-	hierarchial throughput:	2976190.476190 (ops/s)
+	regular ticks:	4120000
+	regular seconds:	4.120000
+	regular throughput:	2427184.466019 (ops/s)
+	hierarchial ticks:	3410000
+	hierarchial seconds:	3.410000
+	hierarchial throughput:	2932551.319648 (ops/s)
 Query positives
 	total tests:	0
 Input overview
@@ -199,12 +199,12 @@ Bit array size
 	pages:	20
 Insertion timing
 	number of ops:	10000000
-	regular ticks:	4060000
-	regular seconds:	4.060000
-	regular throughput:	2463054.187192 (ops/s)
-	hierarchial ticks:	3410000
-	hierarchial seconds:	3.410000
-	hierarchial throughput:	2932551.319648 (ops/s)
+	regular ticks:	4050000
+	regular seconds:	4.050000
+	regular throughput:	2469135.802469 (ops/s)
+	hierarchial ticks:	3330000
+	hierarchial seconds:	3.330000
+	hierarchial throughput:	3003003.003003 (ops/s)
 Query positives
 	total tests:	0
 Input overview
@@ -218,11 +218,11 @@ Bit array size
 	pages:	25
 Insertion timing
 	number of ops:	10000000
-	regular ticks:	4020000
-	regular seconds:	4.020000
-	regular throughput:	2487562.189055 (ops/s)
-	hierarchial ticks:	3360000
-	hierarchial seconds:	3.360000
-	hierarchial throughput:	2976190.476190 (ops/s)
+	regular ticks:	4290000
+	regular seconds:	4.290000
+	regular throughput:	2331002.331002 (ops/s)
+	hierarchial ticks:	3440000
+	hierarchial seconds:	3.440000
+	hierarchial throughput:	2906976.744186 (ops/s)
 Query positives
 	total tests:	0

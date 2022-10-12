@@ -23,7 +23,7 @@
 int parse_lines (char * mapped, const char *** lines_output);
 
 /*
-    insert_file
+    insert_file 
     query_file
 */
 int main(int argc, char *argv[]) {
@@ -63,22 +63,24 @@ int main(int argc, char *argv[]) {
         query_keys_size = 0;
     }
 
+    int requested_bits = (argc == 4) ? atoi(argv[3]) : insert_keys_size*BITS_PER_ELEMENT;
+
     printf("Input overview\n");
     printf("\tinsert count:\t%i\n", insert_keys_size);
     printf("\tinsert count in millions:\t%f\n", ((double) insert_keys_size) / MIL);
     printf("\tquery count:\t%i\n", query_keys_size);
     printf("\tquery count millions:\t%f\n",  ((double) query_keys_size) / MIL);
-
+    printf("\trequested bits:\t%i\n", requested_bits);
     /*
         Initialize bloom filters
     */
-    int requested_bits = (argc == 4) ? atoi(argv[3]) : insert_keys_size*BITS_PER_ELEMENT;
     int actual_bits = requested_bits + (PAGE_SIZE_BITS - ((requested_bits-1) % PAGE_SIZE_BITS)) + 1;
 
     printf("Bit array size\n");
     printf("\tmb:\t%f\n", ((double) actual_bits)/8000000.0);
     printf("\tbits:\t%i\n", actual_bits);
     printf("\tpages:\t%i\n", actual_bits/PAGE_SIZE_BITS);
+    printf("\tbits per elements:\t%f\n", ((double) actual_bits)/insert_keys_size);
 
     //Hierarchal bloom filter.
     h_bloomfilt_t * h_bf = h_bloomfilter_init(actual_bits);
