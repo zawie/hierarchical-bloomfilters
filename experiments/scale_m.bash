@@ -2,8 +2,7 @@ TIMESTAMP=`date +%F-%T`
 
 DAT_FILE="experiments/dats/scale-m_$TIMESTAMP.dat"
 
-#N=10000000
-N=100000
+N=10000000
 
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
 echo "# N=$N" >> $DAT_FILE
