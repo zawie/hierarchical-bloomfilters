@@ -50,7 +50,9 @@ int main(int argc, char *argv[]) {
     const char **query_keys;
     int query_keys_size = parse_lines(query_mapped, &query_keys);
 
-    printf("input information:\n\t%i inserts\n\t%i queries\n", insert_keys_size, query_keys_size);
+    printf("Input\n");
+    printf("\tinsert count:\t%i\n", insert_keys_size);
+    printf("\tquery count:\t%i\n", query_keys_size);
 
     /*
         Initialize bloom filters
@@ -58,7 +60,10 @@ int main(int argc, char *argv[]) {
     int needed_bits = insert_keys_size*BITS_PER_ELEMENT;
     int actual_bits = needed_bits + (PAGE_SIZE_BITS - ((needed_bits-1) % PAGE_SIZE_BITS)) + 1;
 
-    printf("bloom filter:\n\tsize:\t%f Megabytes (%i bits)\n\tpages:\t%i\n", ((double) actual_bits)/8000000.0, actual_bits, actual_bits/PAGE_SIZE_BITS);
+    printf("Bit array size\n");
+    printf("\tmb:\t%f\n", ((double) actual_bits)/8000000.0);
+    printf("\tbits:\t%i\n", actual_bits);
+    printf("\tpages:\t%i\n", actual_bits/PAGE_SIZE_BITS);
 
     //Hierarchal bloom filter.
     h_bloomfilt_t * h_bf = h_bloomfilter_init(actual_bits);
@@ -69,7 +74,7 @@ int main(int argc, char *argv[]) {
     /*
         Time inserts on regular bloom filter
     */
-     printf("\nPerforming timing...\n\n");
+     printf("Times\n");
 
     //Regular bloom filter
     t0 = clock(); //Start timer
@@ -78,9 +83,9 @@ int main(int argc, char *argv[]) {
     for (i = 0; i < query_keys_size; i++)
         bloomfilter_check(reg_bf, (char *) query_keys[i]);
     t1 = clock(); //End timer
-    regular_time = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
 
-    printf("regular duration:\n\t%f seconds\n\t%u ticks\n", regular_time, t1 - t0);
+    printf("\tregular ticks:\t%i\n", t1 - t0);
+    printf("\tregular seconds:\t%f\n", ((double) (t1 - t0)) / CLOCKS_PER_SEC);
 
     //Hierarchal bloom filter
     t0 = clock(); //Start timer
@@ -89,9 +94,9 @@ int main(int argc, char *argv[]) {
     for (i = 0; i < query_keys_size; i++) 
         h_bloomfilter_check(h_bf, (char *) query_keys[i]);
     t1 = clock(); //End timer
-    hierarchical_time = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
 
-    printf("hierarchical duration:\n\t%f seconds\n\t%u ticks\n", hierarchical_time, t1 - t0);
+    printf("\n\thierarchial ticks:\t%i\n", t1 - t0);
+    printf("\thierarchial seconds:\t%f\n", ((double) (t1 - t0)) / CLOCKS_PER_SEC);
 
 }
 
