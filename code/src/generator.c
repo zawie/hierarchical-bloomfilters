@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     
     printf("Generating %i keys of size %i to file \"%s\".\n", amount, key_size, filename);
 
-    int fd = open(filename, O_WRONLY | O_CREAT, 644);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 644);
 
     int i;
     for(i = 0; i < amount*(key_size+1) - 1; i++) {
