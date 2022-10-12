@@ -15,6 +15,7 @@ h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits) {
     bf->bitarr = INIT_BITARR(num_bits);
     bf->num_bits = num_bits;
 
+    bf->filter_hash_config = generate_hash_config();
     for(j = 0; j < BIT_SELECTORS; j++) 
         bf->hash_configs[j] = generate_hash_config();    
     
