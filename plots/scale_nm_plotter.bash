@@ -1,8 +1,8 @@
 PLOT_FILE="plots/scale-nm.png"
 #Make plot
 gnuplot -persist <<-EOFMarker
-    set title "Duration vs. Number of Operations"
-    set xlabel "Number of Operations (#)"
+    set title "Duration vs. Number of Insertions"
+    set xlabel "Number of Insertions (#)"
     set ylabel "Duration (Seconds)"
     set key left top
     

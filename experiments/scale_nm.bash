@@ -5,6 +5,9 @@ DAT_FILE="experiments/dats/$ID.dat"
 LOG_FILE="experiments/logs/$ID.log"
 DATA_FILE="data/$ID.txt"
 
+#Make executables
+make 
+
 #Write header
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
 echo "# N=$N" >> $DAT_FILE
@@ -21,7 +24,7 @@ do
     ./gen $DATA_FILE 8 $N > /dev/null
 
     #Run experiments
-    RESULT=`./bloomfilt data/inserts /dev/null`
+    RESULT=`./bloomfilt $DATA_FILE /dev/null`
     echo "N=$N" >> $LOG_FILE
     echo "$RESULT" >> $LOG_FILE
 
@@ -41,9 +44,16 @@ do
     #Write results to row
     echo "$N    $R_SECONDS    $H_SECONDS" >> $DAT_FILE
 
-    #Update plot
-    ./plots/scale_nm_plotter.bash $DAT_FILE
+    #Update plot, ignoring errors or warnings
+    ./plots/scale_nm_plotter.bash $DAT_FILE > /dev/null
 done
 
 #Clean up generated data file
 rm $DATA_FILE
+
+#Wait for DAT file to flush
+sleep 1
+
+#Final plot
+./plots/scale_nm_plotter.bash $DAT_FILE
+

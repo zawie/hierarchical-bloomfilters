@@ -20,9 +20,12 @@ unit:
 clean:
 	rm -f ./core.*
 	rm -f ./$(TEST_EXE_NAME)
-	rm gen
-	rm bloomfilt
+	rm -f gen
+	rm -f bloomfilt
 
-clean_dats:
-	rm experiments/dats/*.dat
-	rm experiments/logs/*.log
+clean_all:
+	make clean
+	rm -f experiments/dats/*.dat
+	rm -f experiments/logs/*.log
+	rm -f data/*
+	rm -f plots/*.png

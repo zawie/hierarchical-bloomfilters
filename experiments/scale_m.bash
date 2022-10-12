@@ -7,6 +7,9 @@ DATA_FILE="data/$ID.txt"
 
 N=10000000
 
+#Make executables
+make 
+
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
 echo "# N=$N" >> $DAT_FILE
 echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
