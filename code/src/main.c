@@ -87,6 +87,7 @@ int main(int argc, char *argv[]) {
         Time inserts on regular bloom filter
     */
      printf("Insertion timing\n");
+    printf("\tnumber of ops:\t%i\n", insert_keys_size);
 
     //Regular bloom filter
     t0 = clock(); //Start timer
@@ -94,8 +95,11 @@ int main(int argc, char *argv[]) {
         bloomfilter_insert(reg_bf, (char *) insert_keys[i]);
     t1 = clock(); //End timer
 
+    double regular_seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
+
     printf("\tregular ticks:\t%i\n", t1 - t0);
-    printf("\tregular seconds:\t%f\n", ((double) (t1 - t0)) / CLOCKS_PER_SEC);
+    printf("\tregular seconds:\t%f\n", regular_seconds);
+    printf("\tregular throughput:\t%f (ops/s)\n", ((double) insert_keys_size) / regular_seconds);
 
     //Hierarchal bloom filter
     t0 = clock(); //Start timer
@@ -103,8 +107,11 @@ int main(int argc, char *argv[]) {
         h_bloomfilter_insert(h_bf, (char *) insert_keys[i]);
     t1 = clock(); //End timer
 
+    double hierarchial_seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
+
     printf("\thierarchial ticks:\t%i\n", t1 - t0);
-    printf("\thierarchial seconds:\t%f\n", ((double) (t1 - t0)) / CLOCKS_PER_SEC);
+    printf("\thierarchial seconds:\t%f\n", hierarchial_seconds);
+    printf("\thierarchial throughput:\t%f (ops/s)\n", ((double) insert_keys_size) / hierarchial_seconds);
 
     /*
         Compute accuracy
