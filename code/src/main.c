@@ -42,20 +42,26 @@ int main(int argc, char *argv[]) {
     fstat(insert_fd, &insert_stat);
     fstat(query_fd, &query_stat);
 
-    char * insert_mapped = mmap(0, insert_stat.st_size, PROT_READ | PROT_WRITE, MAP_PRIVATE, insert_fd, 0);
+    int insert_keys_size;
+    char * insert_mapped;
     const char **insert_keys;
-    int insert_keys_size = parse_lines(insert_mapped, &insert_keys);
+    if (insert_stat.st_size > 0) {
+        insert_mapped = mmap(0, insert_stat.st_size, PROT_READ | PROT_WRITE, MAP_PRIVATE, insert_fd, 0);
+        insert_keys_size = parse_lines(insert_mapped, &insert_keys);
+    } else {
+        insert_keys_size = 0;
+    }
 
     int query_keys_size;
     char * query_mapped;
     const char **query_keys;
-
     if (query_stat.st_size > 0) {
         query_mapped = mmap(0, query_stat.st_size, PROT_READ | PROT_WRITE, MAP_PRIVATE, query_fd, 0);
         query_keys_size = parse_lines(query_mapped, &query_keys);
     } else {
         query_keys_size = 0;
     }
+
     printf("Input overview\n");
     printf("\tinsert count:\t%i\n", insert_keys_size);
     printf("\tquery count:\t%i\n", query_keys_size);
