@@ -20,3 +20,5 @@ unit:
 clean:
 	rm -f ./core.*
 	rm -f ./$(TEST_EXE_NAME)
+	rm gen
+	rm bloomfilt
