@@ -25,3 +25,4 @@ clean:
 
 clean_dats:
 	rm experiments/dats/*.dat
+	rm experiments/logs/*.log

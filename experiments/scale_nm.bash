@@ -1,8 +1,12 @@
 TIMESTAMP=`date +%F_%T`
-OUTPUT_FILE="experiments/results/scale-nm_$TIMESTAMP.csv"
+DAT_FILE="experiments/dats/scale-nm_$TIMESTAMP.dat"
+LOG_FILE="experiments/logs/scale-nm_$TIMESTAMP.log"
 
 #Write header
-echo "# Inserts,# Queries,Size (Pages),Regular Time (seconds),Hierarchial (seconds)" >> $OUTPUT_FILE
+echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
+echo "# N=$N" >> $DAT_FILE
+echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
+echo "#n   regular (seconds)    hierarchal (seconds)" >> $DAT_FILE
 
 #Run experiments
 for N in $@
@@ -16,6 +20,8 @@ do
 
     #Run experiments
     RESULT=`./bloomfilt data/inserts data/queries`
+    echo "N=$N" >> $LOG_FILE
+    echo "$RESULT" >> $LOG_FILE
 
     #Parse results
     NUM_INSERTS=`grep -oP 'insert count:\s*\K\d+' <<< "$RESULT"`
@@ -31,6 +37,9 @@ do
     echo "hierarchial:   $H_SECONDS (s)"
 
     #Write results to row
-    echo "$NUM_INSERTS,$NUM_QUERIES,$PAGE_COUNT,$R_SECONDS,$H_SECONDS" >> $OUTPUT_FILE
+    echo "$NUM_INSERTS,$NUM_QUERIES,$PAGE_COUNT,$R_SECONDS,$H_SECONDS" >> $DAT_FILE
 
+    #Update plot
+    ./plots/scale_nm_plotter.bash $DAT_FILE
 done
+

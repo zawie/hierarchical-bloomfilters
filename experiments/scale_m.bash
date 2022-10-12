@@ -1,6 +1,7 @@
 TIMESTAMP=`date +%F-%T`
 
 DAT_FILE="experiments/dats/scale-m_$TIMESTAMP.dat"
+LOG_FILE="experiments/logs/scale-m_$TIMESTAMP.log"
 
 N=10000000
 
@@ -23,8 +24,10 @@ do
     
     #Output progress to stdout
     echo "P=$P (M=$M)"
+    
     #Run experiments
     RESULT=`./bloomfilt data/inserts data/queries $M`
+    echo "$RESULT" >> $LOG_FILE
 
     #Parse results
     PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$RESULT"`
@@ -39,7 +42,6 @@ do
     #Write results to row
     echo "$PAGE_COUNT   $R_SECONDS  $H_SECONDS" >> $DAT_FILE
 
+    #Update plot
+    ./plots/scale_m_plotter.bash $DAT_FILE
 done
-
-#Plot
-./plots/scale_m_plotter.bash $DAT_FILE
