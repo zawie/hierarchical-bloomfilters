@@ -11,6 +11,7 @@ core.*
 writeup/*
 !writeup/*.tex
 !writeup/*.bib
+!writeup/*.pdf
 
 #Ignore generated files
 *.generated.*
