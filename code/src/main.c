@@ -7,8 +7,9 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/time.h>
 
-#include "hash.djb2.c"
+#include "hash/sdbm.c"
 
 #include "h_bloomfilter.h"
 #include "h_bloomfilter.c"
@@ -19,7 +20,7 @@
 #define BITS_PER_ELEMENT    10  //This is "n/m"
 #define MIL                 1000000
 
-enum Type {Standard = 1, Hierarchical = 0}; 
+enum Type {Standard = 0, Hierarchical = 1}; 
 
 //Prototypes
 int parse_lines (char * mapped, const char *** lines_output);
@@ -29,6 +30,13 @@ int parse_lines (char * mapped, const char *** lines_output);
     query_file
 */
 int main(int argc, char *argv[]) {
+
+    //Set random seed
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    unsigned seed = tv.tv_usec * tv.tv_sec;
+    srand(seed);
+
     clock_t t0, t1;
     
     int i;
@@ -103,7 +111,8 @@ int main(int argc, char *argv[]) {
     /*
         Initialize bloom filters
     */
-    int actual_bits = requested_bits + (PAGE_SIZE_BITS - ((requested_bits-1) % PAGE_SIZE_BITS)) + 1;
+    int actual_bits = requested_bits + (PAGE_SIZE_BITS - (requested_bits % PAGE_SIZE_BITS));
+
 
     printf("Bit array size\n");
     printf("\ttype:\t%s\n", type == Hierarchical ? "hierarchial" : "standard");

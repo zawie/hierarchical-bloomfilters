@@ -5,10 +5,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <assert.h>
 
 #include "bitarr.h"
 
-#include "hash.h"
+#include "hash/hash.h"
 
 #define BIT_SELECTORS       7   //This is "k"
 //Note: this implementation only works when there is one bloom filter selector; e.g l = 1
@@ -21,6 +22,7 @@ typedef struct h_bloom_filter {
     hash_config_t hash_configs [BIT_SELECTORS];   // Hash function configurations to select bits
     byte_t * bitarr;    // Underlying bit array
     unsigned num_bits;  // Size of the bit array in bits
+    unsigned num_pages;  // Size of the bit array in bits
 } h_bloomfilt_t;
 
 /**

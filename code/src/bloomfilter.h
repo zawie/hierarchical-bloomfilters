@@ -7,7 +7,7 @@
 
 #include "bitarr.h"
 
-#include "hash.h"
+#include "hash/hash.h"
 
 #define BLOOMFILTER_HASH_FUNCTION_COUNT     7   //This is "k"
 

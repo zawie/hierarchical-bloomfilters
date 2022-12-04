@@ -49,7 +49,7 @@ do
     echo "hierarchial false-positive rate:  $H_FP"
 
     #Write results to row
-    echo "$BITS_PER_ELEMENTS   $S_FP $H_FP" >> $DAT_FILE
+    echo "$BPE   $S_FP $H_FP" >> $DAT_FILE
 
     #Update plot
     ./plots/fp_plotter.bash $DAT_FILE
