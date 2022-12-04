@@ -10,8 +10,7 @@ h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits) {
     h_bloomfilt_t *bf = (h_bloomfilt_t *) malloc(sizeof(h_bloomfilt_t));
     unsigned j;
     
-    // unsigned num_bits = minimum_num_bits + (PAGE_SIZE_BITS - ( (minimum_num_bits-1) % PAGE_SIZE_BITS)) + 1;
-    unsigned num_bits = minimum_num_bits + (PAGE_SIZE_BITS - (minimum_num_bits % PAGE_SIZE_BITS));
+    unsigned num_bits = minimum_num_bits + (PAGE_SIZE_BITS - (minimum_num_bits % PAGE_SIZE_BITS)) + PAGE_SIZE_BITS;
     assert(num_bits % PAGE_SIZE_BITS == 0);
 
     unsigned num_pages = num_bits/PAGE_SIZE_BITS;
@@ -31,9 +30,8 @@ void h_bloomfilter_insert(h_bloomfilt_t * bloomfilt, char* key) {
     unsigned j;
 
     byte_t * subfilter = GET_SUBFILTER(bloomfilt, key);
-    for(j=0; j < BIT_SELECTORS; j++) {
+    for(j=0; j < BIT_SELECTORS; j++) 
         SET_BITARR(subfilter, MINOR_INDEX(bloomfilt, key, j));
-    }
 }
 
 bool h_bloomfilter_check(h_bloomfilt_t * bloomfilt, char* key) {

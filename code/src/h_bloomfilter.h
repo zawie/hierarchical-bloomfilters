@@ -12,10 +12,9 @@
 #include "hash/hash.h"
 
 #define BIT_SELECTORS       7   //This is "k"
-//Note: this implementation only works when there is one bloom filter selector; e.g l = 1
 
 #define PAGE_SIZE_BYTES         ((unsigned) 4096)                //Page size in bytes
-#define PAGE_SIZE_BITS          ((unsigned) (8*PAGE_SIZE_BYTES)) //Page size in bits
+#define PAGE_SIZE_BITS          ((unsigned) 32768) //Page size in bits
 
 typedef struct h_bloom_filter {
     hash_config_t filter_hash_config;             // Hash function configuration to select bloom filter.
