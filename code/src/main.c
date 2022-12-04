@@ -19,6 +19,8 @@
 #define BITS_PER_ELEMENT    10  //This is "n/m"
 #define MIL                 1000000
 
+enum Type {Standard = 1, Hierarchical = 0}; 
+
 //Prototypes
 int parse_lines (char * mapped, const char *** lines_output);
 
@@ -28,12 +30,38 @@ int parse_lines (char * mapped, const char *** lines_output);
 */
 int main(int argc, char *argv[]) {
     clock_t t0, t1;
-    double regular_time, hierarchical_time;
     
     int i;
 
-    const char * insert_filename = argv[1];
-    const char * query_filename  = argv[2];
+    const char * bloomfilter_type = argv[1];
+    const char * insert_filename = argv[2];
+    const char * query_filename  = argv[3];
+
+    enum Type type;
+    if (bloomfilter_type[0] == 's') {
+        type = Standard;
+    } else if (bloomfilter_type[0] == 'h') {
+        type = Hierarchical;
+    } else {
+        printf("ERROR! Invalid bloom filter type. Expected \"s\" for standard or \"h\" for hierarchical.");
+        exit(1);
+    }
+
+    // Set appropriate bloom filter type
+    void *  (*init)(int);
+    void    (*insert)(void *, char *);
+    bool    (*query)(void *, char *);
+
+    // NOTE: Causes warning from compiler, but can be safely ignored since methods have same signature format.
+    if (type == Standard) {
+        init    = &bloomfilter_init;
+        insert  = &bloomfilter_insert;
+        query   = &bloomfilter_check;
+    } else { //Hierarchical
+        init    = &h_bloomfilter_init;
+        insert  = &h_bloomfilter_insert;
+        query   = &h_bloomfilter_check;
+    }
 
     //Open files
     int insert_fd = open(insert_filename, O_RDONLY);
@@ -71,52 +99,37 @@ int main(int argc, char *argv[]) {
     printf("\tquery count:\t%i\n", query_keys_size);
     printf("\tquery count millions:\t%f\n",  ((double) query_keys_size) / MIL);
     printf("\trequested bits:\t%i\n", requested_bits);
+    
     /*
         Initialize bloom filters
     */
     int actual_bits = requested_bits + (PAGE_SIZE_BITS - ((requested_bits-1) % PAGE_SIZE_BITS)) + 1;
 
     printf("Bit array size\n");
+    printf("\ttype:\t%s\n", type == Hierarchical ? "hierarchial" : "standard");
     printf("\tmb:\t%f\n", ((double) actual_bits)/8000000.0);
     printf("\tbits:\t%i\n", actual_bits);
     printf("\tpages:\t%i\n", actual_bits/PAGE_SIZE_BITS);
     printf("\tbits per elements:\t%f\n", ((double) actual_bits)/insert_keys_size);
 
-    //Regular bloom filter.
-    bloomfilt_t * reg_bf = bloomfilter_init(actual_bits);
-
-    //Hierarchal bloom filter.
-    h_bloomfilt_t * h_bf = h_bloomfilter_init(actual_bits);
+    void * bf_p = init(actual_bits);
 
     /*
-        Time inserts on regular bloom filter
+        Time inserts on bloom filter
     */
-     printf("Insertion timing\n");
+    printf("Insertion timing\n");
     printf("\tnumber of ops:\t%i\n", insert_keys_size);
 
-    //Hierarchal bloom filter
-    t0 = clock(); //Start timer
-    for (i = 0; i < insert_keys_size; i++) 
-        h_bloomfilter_insert(h_bf, (char *) insert_keys[i]);
-    t1 = clock(); //End timer
-
-    double hierarchial_seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
-
-    printf("\thierarchial ticks:\t%i\n", t1 - t0);
-    printf("\thierarchial seconds:\t%f\n", hierarchial_seconds);
-    printf("\thierarchial throughput:\t%f (ops/s)\n", ((double) insert_keys_size) / hierarchial_seconds);
-
-    //Regular bloom filter
     t0 = clock(); //Start timer
     for (i = 0; i < insert_keys_size; i++)
-        bloomfilter_insert(reg_bf, (char *) insert_keys[i]);
+        insert(bf_p, (char *) insert_keys[i]);
     t1 = clock(); //End timer
 
-    double regular_seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
+    double seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
 
-    printf("\tregular ticks:\t%i\n", t1 - t0);
-    printf("\tregular seconds:\t%f\n", regular_seconds);
-    printf("\tregular throughput:\t%f (ops/s)\n", ((double) insert_keys_size) / regular_seconds);
+    printf("\tticks:\t%i\n", t1 - t0);
+    printf("\tseconds:\t%f\n", seconds);
+    printf("\tthroughput:\t%f (ops/s)\n", ((double) insert_keys_size) / seconds);
 
     /*
         Compute accuracy
@@ -124,23 +137,17 @@ int main(int argc, char *argv[]) {
     printf("Query positives\n");
 
     int r_pos = 0;
-    int h_pos = 0;
 
     for (i = 0; i < query_keys_size; i++) {
-        if (bloomfilter_check(reg_bf, (char *) query_keys[i]))
+        if (query(bf_p, (char *) query_keys[i]))
             r_pos++;
-        if(h_bloomfilter_check(h_bf, (char *) query_keys[i]))
-            h_pos++;
     }
 
     printf("\ttotal tests:\t%i\n", query_keys_size);
 
     if (query_keys_size > 0) {
-        printf("\tregular num positives:\t%i\n", r_pos);
-        printf("\tregular positive rate:\t%f\n", ((double) r_pos)/((double) query_keys_size));
-
-        printf("\thierarchial num positives:\t%i\n", h_pos);
-        printf("\thierarchial positive rate:\t%f\n", ((double) h_pos) / ((double) query_keys_size));
+        printf("\tnum positives:\t%i\n", r_pos);
+        printf("\tpositive rate:\t%f\n", ((double) r_pos)/((double) query_keys_size));
     }
 
 }
