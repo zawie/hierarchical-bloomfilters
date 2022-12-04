@@ -1,0 +1,798 @@
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1470000
+	seconds:	1.470000
+	throughput:	1360544.217687 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1280000
+	seconds:	1.280000
+	throughput:	1562500.000000 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1480000
+	seconds:	1.480000
+	throughput:	1351351.351351 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1250000
+	seconds:	1.250000
+	throughput:	1600000.000000 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1460000
+	seconds:	1.460000
+	throughput:	1369863.013699 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1260000
+	seconds:	1.260000
+	throughput:	1587301.587302 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1450000
+	seconds:	1.450000
+	throughput:	1379310.344828 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1250000
+	seconds:	1.250000
+	throughput:	1600000.000000 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1450000
+	seconds:	1.450000
+	throughput:	1379310.344828 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1270000
+	seconds:	1.270000
+	throughput:	1574803.149606 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1440000
+	seconds:	1.440000
+	throughput:	1388888.888889 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1260000
+	seconds:	1.260000
+	throughput:	1587301.587302 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1450000
+	seconds:	1.450000
+	throughput:	1379310.344828 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1260000
+	seconds:	1.260000
+	throughput:	1587301.587302 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1460000
+	seconds:	1.460000
+	throughput:	1369863.013699 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1260000
+	seconds:	1.260000
+	throughput:	1587301.587302 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1460000
+	seconds:	1.460000
+	throughput:	1369863.013699 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1250000
+	seconds:	1.250000
+	throughput:	1600000.000000 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1470000
+	seconds:	1.470000
+	throughput:	1360544.217687 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1260000
+	seconds:	1.260000
+	throughput:	1587301.587302 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1460000
+	seconds:	1.460000
+	throughput:	1369863.013699 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1270000
+	seconds:	1.270000
+	throughput:	1574803.149606 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1440000
+	seconds:	1.440000
+	throughput:	1388888.888889 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1270000
+	seconds:	1.270000
+	throughput:	1574803.149606 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1460000
+	seconds:	1.460000
+	throughput:	1369863.013699 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1260000
+	seconds:	1.260000
+	throughput:	1587301.587302 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1440000
+	seconds:	1.440000
+	throughput:	1388888.888889 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1270000
+	seconds:	1.270000
+	throughput:	1574803.149606 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1500000
+	seconds:	1.500000
+	throughput:	1333333.333333 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1330000
+	seconds:	1.330000
+	throughput:	1503759.398496 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1450000
+	seconds:	1.450000
+	throughput:	1379310.344828 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1340000
+	seconds:	1.340000
+	throughput:	1492537.313433 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1440000
+	seconds:	1.440000
+	throughput:	1388888.888889 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1270000
+	seconds:	1.270000
+	throughput:	1574803.149606 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1460000
+	seconds:	1.460000
+	throughput:	1369863.013699 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1290000
+	seconds:	1.290000
+	throughput:	1550387.596899 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	standard
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1440000
+	seconds:	1.440000
+	throughput:	1388888.888889 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	16115
+	positive rate:	0.008058
+Input overview
+	insert count:	2000000
+	insert count in millions:	2.000000
+	query count:	2000000
+	query count millions:	2.000000
+	requested bits:	20000000
+Bit array size
+	type:	hierarchial
+	mb:	2.502656
+	bits:	20021250
+	pages:	611
+	bits per elements:	10.010625
+Insertion timing
+	number of ops:	2000000
+	ticks:	1330000
+	seconds:	1.330000
+	throughput:	1503759.398496 (ops/s)
+Query positives
+	total tests:	2000000
+	num positives:	1286041
+	positive rate:	0.643020

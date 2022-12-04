@@ -1,8 +1,0 @@
-# Desc: Fix number of operations and scale bliim filter size
-# N=10000000
-# timestamp=2022-10-13-15:08:59
-#pages   regular (ops/s)    hierarchal (ops/s)
-1   2325581.395349 2785515.320334
-10   2409638.554217 2770083.102493
-50   2232142.857143 2840909.090909
-100   2188183.807440 2770083.102493

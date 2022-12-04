@@ -13,7 +13,7 @@ make
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
 echo "# N=$N" >> $DAT_FILE
 echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
-echo "#pages   regular (ops/s)    hierarchal (ops/s)" >> $DAT_FILE
+echo "#pages   standard (ops/s)    hierarchal (ops/s)" >> $DAT_FILE
 
 #Generate data
 echo "Generating $N keys to inserts"
@@ -30,25 +30,28 @@ do
     echo "P=$P (M=$M)"
     
     #Run experiments
-    RESULT=`./bloomfilt $DATA_FILE /dev/null $M`
-    echo "$RESULT" >> $LOG_FILE
+    S_RESULT=`./bloomfilt s $DATA_FILE /dev/null $M`
+    H_RESULT=`./bloomfilt h $DATA_FILE /dev/null $M`
+
+    echo "$S_RESULT" >> $LOG_FILE
+    echo "$H_RESULT" >> $LOG_FILE
 
     #Parse results
-    PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$RESULT"`
+    PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$S_RESULT"`
 
-    R_SECONDS=`grep -oP 'regular seconds:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
-    H_SECONDS=`grep -oP 'hierarchial seconds:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
-    R_THRU=`grep -oP 'regular throughput:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
-    H_THRU=`grep -oP 'hierarchial throughput:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
+    S_SECONDS=`grep -oP 'seconds:\s*\K\d+(\.\d+)?' <<< "$S_RESULT"`
+    H_SECONDS=`grep -oP 'seconds:\s*\K\d+(\.\d+)?' <<< "$H_RESULT"`
+    S_THRU=`grep -oP 'throughput:\s*\K\d+(\.\d+)?' <<< "$S_RESULT"`
+    H_THRU=`grep -oP 'throughput:\s*\K\d+(\.\d+)?' <<< "$H_RESULT"`
 
     #Output results to stdout
-    echo "regular:   $R_SECONDS (s)"
-    echo "regular:   $R_THRU (ops/s)"
+    echo "standard:      $S_SECONDS (s)"
+    echo "standard:      $S_THRU (ops/s)"
     echo "hierarchial:   $H_SECONDS (s)"
     echo "hierarchial:   $H_THRU (ops/s)"
 
     #Write results to row
-    echo "$PAGE_COUNT   $R_THRU $H_THRU" >> $DAT_FILE
+    echo "$PAGE_COUNT   $S_THRU $H_THRU" >> $DAT_FILE
 
     #Update plot
     ./plots/scale_m_plotter.bash $DAT_FILE

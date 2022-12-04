@@ -14,7 +14,7 @@ make
 echo "# Desc: Find false positive rate as n/m varies (fix n)" >> $DAT_FILE
 echo "# N=$N" >> $DAT_FILE
 echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
-echo "#n/m  regular    hierarchal" >> $DAT_FILE
+echo "#n/m  standard    hierarchal" >> $DAT_FILE
 
 #Generate data
 echo "Generating $N keys to inserts"
@@ -34,22 +34,25 @@ do
     echo "BPE=$BPE (M=$M)"
     
     #Run experiments
-    RESULT=`./bloomfilt $INSERTS_KEYS $QUERY_KEYS $M`
-    echo "$RESULT" >> $LOG_FILE
+    S_RESULT=`./bloomfilt s $INSERTS_KEYS $QUERY_KEYS $M`
+    H_RESULT=`./bloomfilt h $INSERTS_KEYS $QUERY_KEYS $M`
+
+    echo "$S_RESULT" >> $LOG_FILE
+    echo "$H_RESULT" >> $LOG_FILE
 
     #Parse results
-    PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$RESULT"`
-    BITS_PER_ELEMENTS=`grep -oP 'bits per elements:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
-    R_FP=`grep -oP 'regular positive rate:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
-    H_FP=`grep -oP 'hierarchial positive rate:\s*\K\d+(\.\d+)?' <<< "$RESULT"`
+    PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$S_RESULT"`
+    BITS_PER_ELEMENTS=`grep -oP 'bits per elements:\s*\K\d+(\.\d+)?' <<< "$S_RESULT"`
+    S_FP=`grep -oP 'positive rate:\s*\K\d+(\.\d+)?' <<< "$S_RESULT"`
+    H_FP=`grep -oP 'positive rate:\s*\K\d+(\.\d+)?' <<< "$H_RESULT"`
 
     #Output results to stdout
     echo "bits per element:   $BITS_PER_ELEMENTS"
-    echo "regular false-positive rate:   $R_FP"
-    echo "hierarchial false-positive rate:   $H_FP"
+    echo "standard false-positive rate: $S_FP"
+    echo "hierarchial false-positive rate:  $H_FP"
 
     #Write results to row
-    echo "$BITS_PER_ELEMENTS   $R_FP $H_FP" >> $DAT_FILE
+    echo "$BITS_PER_ELEMENTS   $S_FP $H_FP" >> $DAT_FILE
 
     #Update plot
     ./plots/fp_plotter.bash $DAT_FILE

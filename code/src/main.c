@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     } else if (bloomfilter_type[0] == 'h') {
         type = Hierarchical;
     } else {
-        printf("ERROR! Invalid bloom filter type. Expected \"s\" for standard or \"h\" for hierarchical.");
+        printf("ERROR! Invalid bloom filter type. Expected \"s\" for standard or \"h\" for hierarchical.\n");
         exit(1);
     }
 
@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
         init    = &bloomfilter_init;
         insert  = &bloomfilter_insert;
         query   = &bloomfilter_check;
-    } else { //Hierarchical
+    } else { // Hierarchical
         init    = &h_bloomfilter_init;
         insert  = &h_bloomfilter_insert;
         query   = &h_bloomfilter_check;
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
         query_keys_size = 0;
     }
 
-    int requested_bits = (argc == 4) ? atoi(argv[3]) : insert_keys_size*BITS_PER_ELEMENT;
+    int requested_bits = (argc == 5) ? atoi(argv[4]) : insert_keys_size*BITS_PER_ELEMENT;
 
     printf("Input overview\n");
     printf("\tinsert count:\t%i\n", insert_keys_size);
