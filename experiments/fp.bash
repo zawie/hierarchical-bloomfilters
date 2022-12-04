@@ -8,9 +8,6 @@ QUERY_KEYS="data/query_$ID.txt"
 
 N=2000000
 
-#Make executables
-make 
-
 echo "# Desc: Find false positive rate as n/m varies (fix n)" >> $DAT_FILE
 echo "# N=$N" >> $DAT_FILE
 echo "# timestamp=$TIMESTAMP" >> $DAT_FILE

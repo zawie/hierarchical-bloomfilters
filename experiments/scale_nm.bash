@@ -5,9 +5,6 @@ DAT_FILE="experiments/dats/$ID.dat"
 LOG_FILE="experiments/logs/$ID.log"
 DATA_FILE="data/$ID.txt"
 
-#Make executables
-make 
-
 #Write header
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
 echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
