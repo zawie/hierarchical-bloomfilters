@@ -1,0 +1,4 @@
+# Desc: Fix number of operations and scale bliim filter size
+# N=10000000
+# timestamp=2022-10-13-15:09:50
+#pages   regular (ops/s)    hierarchal (ops/s)

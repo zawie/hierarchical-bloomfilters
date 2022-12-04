@@ -1,0 +1,84 @@
+Input overview
+	insert count:	10000000
+	insert count in millions:	10.000000
+	query count:	0
+	query count millions:	0.000000
+	requested bits:	32768
+Bit array size
+	mb:	0.004096
+	bits:	32770
+	pages:	1
+	bits per elements:	0.003277
+Insertion timing
+	number of ops:	10000000
+	hierarchial ticks:	3590000
+	hierarchial seconds:	3.590000
+	hierarchial throughput:	2785515.320334 (ops/s)
+	regular ticks:	4300000
+	regular seconds:	4.300000
+	regular throughput:	2325581.395349 (ops/s)
+Query positives
+	total tests:	0
+Input overview
+	insert count:	10000000
+	insert count in millions:	10.000000
+	query count:	0
+	query count millions:	0.000000
+	requested bits:	327680
+Bit array size
+	mb:	0.040960
+	bits:	327682
+	pages:	10
+	bits per elements:	0.032768
+Insertion timing
+	number of ops:	10000000
+	hierarchial ticks:	3610000
+	hierarchial seconds:	3.610000
+	hierarchial throughput:	2770083.102493 (ops/s)
+	regular ticks:	4150000
+	regular seconds:	4.150000
+	regular throughput:	2409638.554217 (ops/s)
+Query positives
+	total tests:	0
+Input overview
+	insert count:	10000000
+	insert count in millions:	10.000000
+	query count:	0
+	query count millions:	0.000000
+	requested bits:	1638400
+Bit array size
+	mb:	0.204800
+	bits:	1638402
+	pages:	50
+	bits per elements:	0.163840
+Insertion timing
+	number of ops:	10000000
+	hierarchial ticks:	3520000
+	hierarchial seconds:	3.520000
+	hierarchial throughput:	2840909.090909 (ops/s)
+	regular ticks:	4480000
+	regular seconds:	4.480000
+	regular throughput:	2232142.857143 (ops/s)
+Query positives
+	total tests:	0
+Input overview
+	insert count:	10000000
+	insert count in millions:	10.000000
+	query count:	0
+	query count millions:	0.000000
+	requested bits:	3276800
+Bit array size
+	mb:	0.409600
+	bits:	3276802
+	pages:	100
+	bits per elements:	0.327680
+Insertion timing
+	number of ops:	10000000
+	hierarchial ticks:	3610000
+	hierarchial seconds:	3.610000
+	hierarchial throughput:	2770083.102493 (ops/s)
+	regular ticks:	4570000
+	regular seconds:	4.570000
+	regular throughput:	2188183.807440 (ops/s)
+Query positives
+	total tests:	0

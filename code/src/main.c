@@ -10,11 +10,11 @@
 
 #include "hash.djb2.c"
 
-#include "bloomfilter.h"
-#include "bloomfilter.c"
-
 #include "h_bloomfilter.h"
 #include "h_bloomfilter.c"
+
+#include "bloomfilter.h"
+#include "bloomfilter.c"
 
 #define BITS_PER_ELEMENT    10  //This is "n/m"
 #define MIL                 1000000
@@ -82,29 +82,17 @@ int main(int argc, char *argv[]) {
     printf("\tpages:\t%i\n", actual_bits/PAGE_SIZE_BITS);
     printf("\tbits per elements:\t%f\n", ((double) actual_bits)/insert_keys_size);
 
-    //Hierarchal bloom filter.
-    h_bloomfilt_t * h_bf = h_bloomfilter_init(actual_bits);
-
     //Regular bloom filter.
     bloomfilt_t * reg_bf = bloomfilter_init(actual_bits);
+
+    //Hierarchal bloom filter.
+    h_bloomfilt_t * h_bf = h_bloomfilter_init(actual_bits);
 
     /*
         Time inserts on regular bloom filter
     */
      printf("Insertion timing\n");
     printf("\tnumber of ops:\t%i\n", insert_keys_size);
-
-    //Regular bloom filter
-    t0 = clock(); //Start timer
-    for (i = 0; i < insert_keys_size; i++)
-        bloomfilter_insert(reg_bf, (char *) insert_keys[i]);
-    t1 = clock(); //End timer
-
-    double regular_seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
-
-    printf("\tregular ticks:\t%i\n", t1 - t0);
-    printf("\tregular seconds:\t%f\n", regular_seconds);
-    printf("\tregular throughput:\t%f (ops/s)\n", ((double) insert_keys_size) / regular_seconds);
 
     //Hierarchal bloom filter
     t0 = clock(); //Start timer
@@ -117,6 +105,18 @@ int main(int argc, char *argv[]) {
     printf("\thierarchial ticks:\t%i\n", t1 - t0);
     printf("\thierarchial seconds:\t%f\n", hierarchial_seconds);
     printf("\thierarchial throughput:\t%f (ops/s)\n", ((double) insert_keys_size) / hierarchial_seconds);
+
+    //Regular bloom filter
+    t0 = clock(); //Start timer
+    for (i = 0; i < insert_keys_size; i++)
+        bloomfilter_insert(reg_bf, (char *) insert_keys[i]);
+    t1 = clock(); //End timer
+
+    double regular_seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
+
+    printf("\tregular ticks:\t%i\n", t1 - t0);
+    printf("\tregular seconds:\t%f\n", regular_seconds);
+    printf("\tregular throughput:\t%f (ops/s)\n", ((double) insert_keys_size) / regular_seconds);
 
     /*
         Compute accuracy
