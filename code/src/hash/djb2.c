@@ -8,7 +8,7 @@ hash_t hash(char *str, hash_config_t seed) {
         hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
     } while (c = *str++);
 
-    return hash;
+    return hash % 2147483647;
 }
 
 hash_config_t generate_hash_config() {
