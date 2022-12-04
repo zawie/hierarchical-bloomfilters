@@ -17,6 +17,9 @@ writeup/*
 *.generated.*
 *DELETEME*
 *DELETE_ME*
+./experiments/dats/*.dat
+./experiments/logs/*.log
+./plots/*.png
 
 #Ignore 
 .DS_STORE
