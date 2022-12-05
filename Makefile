@@ -21,8 +21,8 @@ clean:
 	rm -f ./core.*
 	rm -f ./$(TEST_EXE_NAME)
 	rm -f gen
-	rm -r hierarchical
-	rm -r standard
+	rm -f hierarchical
+	rm -f standard
 
 clean_all:
 	make clean
