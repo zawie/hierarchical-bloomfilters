@@ -20,8 +20,8 @@ do
     ./gen $DATA_FILE 8 $N > /dev/null
 
     #Run experiments
-    S_RESULT=`./bloomfilt s $DATA_FILE /dev/null`
-    H_RESULT=`./bloomfilt h $DATA_FILE /dev/null`
+    S_RESULT=`./standard $DATA_FILE /dev/null`
+    H_RESULT=`./hierarchical $DATA_FILE /dev/null`
 
     echo "N=$N" >> $LOG_FILE
     echo "$S_RESULT" >> $LOG_FILE

@@ -29,5 +29,6 @@ plots/*.png
 data/*
 
 #Ignore executables
-bloomfilt
 gen
+hierarchical
+standard

@@ -20,6 +20,15 @@
 #define BITS_PER_ELEMENT    10  //This is "n/m"
 #define MIL                 1000000
 
+/**
+    NOTE:
+    Must define TYPE, INIT, INSERT, QUERY macros in compiler:
+    For hierarchical implementaiton:
+	    gcc -DTYPE=Standard -DINIT=bloomfilter_init -DINSERT=bloomfilter_insert -DQUERY=bloomfilter_check $(SRCDIR)/main.c -o ./standard
+    For standard implementaiton:
+	    gcc -DTYPE=Hierarchical -DINIT=h_bloomfilter_init -DINSERT=h_bloomfilter_insert -DQUERY=h_bloomfilter_check $(SRCDIR)/main.c -o ./hierarchical
+**/
+
 enum Type {Standard = 0, Hierarchical = 1}; 
 
 //Prototypes
@@ -41,35 +50,9 @@ int main(int argc, char *argv[]) {
     
     int i;
 
-    const char * bloomfilter_type = argv[1];
-    const char * insert_filename = argv[2];
-    const char * query_filename  = argv[3];
+    const char * insert_filename = argv[1];
+    const char * query_filename  = argv[2];
 
-    enum Type type;
-    if (bloomfilter_type[0] == 's') {
-        type = Standard;
-    } else if (bloomfilter_type[0] == 'h') {
-        type = Hierarchical;
-    } else {
-        printf("ERROR! Invalid bloom filter type. Expected \"s\" for standard or \"h\" for hierarchical.\n");
-        exit(1);
-    }
-
-    // Set appropriate bloom filter type
-    void *  (*init)(int);
-    void    (*insert)(void *, char *);
-    bool    (*query)(void *, char *);
-
-    // NOTE: Causes warning from compiler, but can be safely ignored since methods have same signature format.
-    if (type == Standard) {
-        init    = &bloomfilter_init;
-        insert  = &bloomfilter_insert;
-        query   = &bloomfilter_check;
-    } else { // Hierarchical
-        init    = &h_bloomfilter_init;
-        insert  = &h_bloomfilter_insert;
-        query   = &h_bloomfilter_check;
-    }
 
     //Open files
     int insert_fd = open(insert_filename, O_RDONLY);
@@ -99,7 +82,7 @@ int main(int argc, char *argv[]) {
         query_keys_size = 0;
     }
 
-    int requested_bits = (argc == 5) ? atoi(argv[4]) : insert_keys_size*BITS_PER_ELEMENT;
+    int requested_bits = (argc == 4) ? atoi(argv[3]) : insert_keys_size*BITS_PER_ELEMENT;
 
     printf("Input overview\n");
     printf("\tinsert count:\t%i\n", insert_keys_size);
@@ -115,13 +98,13 @@ int main(int argc, char *argv[]) {
 
 
     printf("Bit array size\n");
-    printf("\ttype:\t%s\n", type == Hierarchical ? "hierarchial" : "standard");
+    printf("\ttype:\t%s\n", TYPE == Hierarchical ? "hierarchial" : "standard");
     printf("\tmb:\t%f\n", ((double) actual_bits)/8000000.0);
     printf("\tbits:\t%i\n", actual_bits);
     printf("\tpages:\t%i\n", actual_bits/PAGE_SIZE_BITS);
     printf("\tbits per elements:\t%f\n", ((double) actual_bits)/insert_keys_size);
 
-    void * bf_p = init(actual_bits);
+    void * bf_p = INIT(actual_bits);
 
     /*
         Time inserts on bloom filter
@@ -131,7 +114,7 @@ int main(int argc, char *argv[]) {
 
     t0 = clock(); //Start timer
     for (i = 0; i < insert_keys_size; i++)
-        insert(bf_p, (char *) insert_keys[i]);
+        INSERT(bf_p, (char *) insert_keys[i]);
     t1 = clock(); //End timer
 
     double seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
@@ -148,7 +131,7 @@ int main(int argc, char *argv[]) {
     int r_pos = 0;
 
     for (i = 0; i < query_keys_size; i++) {
-        if (query(bf_p, (char *) query_keys[i]))
+        if (QUERY(bf_p, (char *) query_keys[i]))
             r_pos++;
     }
 

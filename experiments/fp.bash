@@ -31,8 +31,8 @@ do
     echo "BPE=$BPE (M=$M)"
     
     #Run experiments
-    S_RESULT=`./bloomfilt s $INSERTS_KEYS $QUERY_KEYS $M`
-    H_RESULT=`./bloomfilt h $INSERTS_KEYS $QUERY_KEYS $M`
+    S_RESULT=`./standard $INSERTS_KEYS $QUERY_KEYS $M`
+    H_RESULT=`./hierarchical $INSERTS_KEYS $QUERY_KEYS $M`
 
     echo "$S_RESULT" >> $LOG_FILE
     echo "$H_RESULT" >> $LOG_FILE

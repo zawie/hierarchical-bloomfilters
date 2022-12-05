@@ -2,11 +2,11 @@ SRCDIR = ./code/src
 TSTDIR = ./code/tst
 UNITYDIR = ./code/lib/unity
 TEST_EXE_NAME = test.generated.exe
-MAIN_FILEPATH = ./bloomfilt
 GEN_FILEPATH = ./gen
 
 build:
-	gcc $(SRCDIR)/main.c -o $(MAIN_FILEPATH)
+	gcc -DTYPE=Standard -DINIT=bloomfilter_init -DINSERT=bloomfilter_insert -DQUERY=bloomfilter_check $(SRCDIR)/main.c -o ./standard
+	gcc -DTYPE=Hierarchical -DINIT=h_bloomfilter_init -DINSERT=h_bloomfilter_insert -DQUERY=h_bloomfilter_check $(SRCDIR)/main.c -o ./hierarchical
 	gcc $(SRCDIR)/generator.c -o $(GEN_FILEPATH)
 
 unit:
@@ -21,7 +21,8 @@ clean:
 	rm -f ./core.*
 	rm -f ./$(TEST_EXE_NAME)
 	rm -f gen
-	rm -f bloomfilt
+	rm -r hierarchical
+	rm -r standard
 
 clean_all:
 	make clean
@@ -37,7 +38,7 @@ run_fast:
 	./experiments/scale_m.bash		1 5 7 20
 	./experiments/fp.bash			2 5 10 15 
 
-run_experiments:
+run_full:
 	make clean
 	make build
 	./experiments/scale_nm.bash		1000000 5000000 10000000 15000000 20000000 25000000 30000000 40000000 50000000 70000000 90000000 110000000

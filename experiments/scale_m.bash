@@ -27,8 +27,8 @@ do
     echo "P=$P (M=$M)"
     
     #Run experiments
-    S_RESULT=`./bloomfilt s $DATA_FILE /dev/null $M`
-    H_RESULT=`./bloomfilt h $DATA_FILE /dev/null $M`
+    S_RESULT=`./standard $DATA_FILE /dev/null $M`
+    H_RESULT=`./hierarchical $DATA_FILE /dev/null $M`
 
     echo "$S_RESULT" >> $LOG_FILE
     echo "$H_RESULT" >> $LOG_FILE
