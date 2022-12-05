@@ -2,7 +2,7 @@
 
 #define BF_INDEX(bloomfilt, key, config_index) ((unsigned int)(hash(key, bloomfilt->hash_configs[config_index]) % bloomfilt->num_bits))
 
-bloomfilt_t * bloomfilter_init(unsigned num_bits) {
+inline bloomfilt_t * bloomfilter_init(unsigned num_bits) {
     bloomfilt_t *bf = (bloomfilt_t *) malloc(sizeof(bloomfilt_t));
     unsigned j;
     
@@ -15,7 +15,7 @@ bloomfilt_t * bloomfilter_init(unsigned num_bits) {
     return bf;    
 }
 
-void bloomfilter_insert(bloomfilt_t * bloomfilt, char* key) {
+inline void bloomfilter_insert(bloomfilt_t * bloomfilt, char* key) {
     unsigned j;
 
     for(j=0; j < BLOOMFILTER_HASH_FUNCTION_COUNT; j++) {
@@ -23,7 +23,7 @@ void bloomfilter_insert(bloomfilt_t * bloomfilt, char* key) {
     }
 }
 
-bool bloomfilter_check(bloomfilt_t * bloomfilt, char* key) {
+inline bool bloomfilter_check(bloomfilt_t * bloomfilt, char* key) {
     unsigned j;
 
     for(j=0; j < BLOOMFILTER_HASH_FUNCTION_COUNT; j++) 

@@ -23,7 +23,7 @@ typedef struct bloom_filter {
  * @param num_bits  the number of bits to initialize in the underlying bit array
  * @returns         a pointer to an empty bloom filter 
  */
-bloomfilt_t * bloomfilter_init(unsigned num_bits);
+inline bloomfilt_t * bloomfilter_init(unsigned num_bits);
 
 /**
  * Inserts a key into a bloom filter
@@ -31,7 +31,7 @@ bloomfilt_t * bloomfilter_init(unsigned num_bits);
  * @param bloomfilt a pointer to the bloomfilter
  * @param key       a string to insert
  */
-void bloomfilter_insert(bloomfilt_t * bloomfilt, char* key);
+inline void bloomfilter_insert(bloomfilt_t * bloomfilt, char* key);
 
 /**
  * Checks whether a key is in the bloom filter. 
@@ -42,6 +42,6 @@ void bloomfilter_insert(bloomfilt_t * bloomfilt, char* key);
  * @param key       a string to check
  * @returns A bool which is false only when the element definitly has not been inserted.
  */
-bool bloomfilter_check(bloomfilt_t * bloomfilt, char* key);
+inline bool bloomfilter_check(bloomfilt_t * bloomfilt, char* key);
 
 #endif

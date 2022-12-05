@@ -6,7 +6,7 @@
 #define MINOR_INDEX(bloomfilt, key, config_index) ((unsigned int) HASH(key, bloomfilt->hash_configs[config_index], PAGE_SIZE_BITS))
 #define GET_SUBFILTER(bloomfilt, key)             ((byte_t *)     ( (byte_t *) bloomfilt->bitarr + MAJOR_INDEX(bloomfilt, key)*PAGE_SIZE_BYTES))
 
-h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits) {
+inline h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits) {
     h_bloomfilt_t *bf = (h_bloomfilt_t *) malloc(sizeof(h_bloomfilt_t));
     unsigned j;
     
@@ -26,7 +26,7 @@ h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits) {
     return bf;    
 }
 
-void h_bloomfilter_insert(h_bloomfilt_t * bloomfilt, char* key) {
+inline void h_bloomfilter_insert(h_bloomfilt_t * bloomfilt, char* key) {
     unsigned j;
 
     byte_t * subfilter = GET_SUBFILTER(bloomfilt, key);
@@ -34,7 +34,7 @@ void h_bloomfilter_insert(h_bloomfilt_t * bloomfilt, char* key) {
         SET_BITARR(subfilter, MINOR_INDEX(bloomfilt, key, j));
 }
 
-bool h_bloomfilter_check(h_bloomfilt_t * bloomfilt, char* key) {
+inline bool h_bloomfilter_check(h_bloomfilt_t * bloomfilt, char* key) {
     unsigned j;
 
     byte_t * subfilter = GET_SUBFILTER(bloomfilt, key);

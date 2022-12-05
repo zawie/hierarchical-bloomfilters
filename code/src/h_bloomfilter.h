@@ -32,7 +32,7 @@ typedef struct h_bloom_filter {
  * @param minimum_num_bits  the minimum number of bits to initialize in the underlying bit array
  * @returns                 a pointer to an empty bloom filter 
  */
-h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits);
+inline h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits);
 
 /**
  * Inserts a key into a bloom filter
@@ -40,7 +40,7 @@ h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits);
  * @param bloomfilt a pointer to the bloomfilter
  * @param key       a string to insert
  */
-void h_bloomfilter_insert(h_bloomfilt_t * bloomfilt, char* key);
+inline void h_bloomfilter_insert(h_bloomfilt_t * bloomfilt, char* key);
 
 /**
  * Checks whether a key is in the bloom filter. 
@@ -51,6 +51,6 @@ void h_bloomfilter_insert(h_bloomfilt_t * bloomfilt, char* key);
  * @param key       a string to check
  * @returns A bool which is false only when the element definitly has not been inserted.
  */
-bool h_bloomfilter_check(h_bloomfilt_t * bloomfilt, char* key);
+inline bool h_bloomfilter_check(h_bloomfilt_t * bloomfilt, char* key);
 
 #endif
