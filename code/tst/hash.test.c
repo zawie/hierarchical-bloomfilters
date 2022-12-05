@@ -1,6 +1,6 @@
 #include "../lib/unity/src/unity.h"
-#include "../src/hash.h"
-#include "../src/hash.djb2.c"
+#include "../src/hash/hash.h"
+#include "../src/hash/djb2.c"
 
 void setUp(void)
 {
