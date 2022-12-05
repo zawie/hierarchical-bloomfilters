@@ -94,8 +94,7 @@ int main(int argc, char *argv[]) {
     /*
         Initialize bloom filters
     */
-    int actual_bits = requested_bits + (PAGE_SIZE_BITS - (requested_bits % PAGE_SIZE_BITS));
-
+    int actual_bits = requested_bits + (PAGE_SIZE_BITS - ((requested_bits-1) % PAGE_SIZE_BITS)) + 1;
 
     printf("Bit array size\n");
     printf("\ttype:\t%s\n", TYPE == Hierarchical ? "hierarchial" : "standard");
