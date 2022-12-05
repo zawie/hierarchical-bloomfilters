@@ -10,11 +10,8 @@ inline h_bloomfilt_t * h_bloomfilter_init(unsigned minimum_num_bits) {
     h_bloomfilt_t *bf = (h_bloomfilt_t *) malloc(sizeof(h_bloomfilt_t));
     unsigned j;
     
-    unsigned num_bits = minimum_num_bits + (PAGE_SIZE_BITS - ((minimum_num_bits-1) % PAGE_SIZE_BITS)) + 1;
-
-    assert(num_bits % PAGE_SIZE_BITS == 0);
-
-    unsigned num_pages = num_bits/PAGE_SIZE_BITS;
+    unsigned num_pages = minimum_num_bits/PAGE_SIZE_BITS + (minimum_num_bits % PAGE_SIZE_BITS == 0 ? 0 : 1);
+    unsigned num_bits = num_pages*PAGE_SIZE_BITS;
 
     bf->bitarr = INIT_BITARR(num_bits);
     bf->num_bits = num_bits;
