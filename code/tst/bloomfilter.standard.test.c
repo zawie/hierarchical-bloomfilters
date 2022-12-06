@@ -1,6 +1,7 @@
 #include "../lib/unity/src/unity.h"
-#include "../src/bloomfilter.h"
-#include "../src/bloomfilter.c"
+#include "../src/bloomfilter/standard.h"
+#include "../src/bloomfilter/standard.c"
+#include "../src/hash/sdbm.c"
 
 #define NUM_BITS    1000
 

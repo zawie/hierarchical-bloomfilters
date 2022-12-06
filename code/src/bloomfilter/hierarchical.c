@@ -1,4 +1,4 @@
-#include "h_bloomfilter.h"
+#include "hierarchical.h"
 
 #define HASH(key, config, m)                    (hash(key, config) % m)
 

@@ -7,9 +7,9 @@
 #include <unistd.h>
 #include <assert.h>
 
-#include "bitarr.h"
+#include "../bitarr/bitarr.h"
 
-#include "hash/hash.h"
+#include "../hash/hash.h"
 
 #define BIT_SELECTORS       7   //This is "k"
 

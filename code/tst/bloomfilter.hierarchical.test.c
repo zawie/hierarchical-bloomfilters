@@ -1,6 +1,7 @@
 #include "../lib/unity/src/unity.h"
-#include "../src/h_bloomfilter.h"
-#include "../src/h_bloomfilter.c"
+#include "../src/bloomfilter/hierarchical.h"
+#include "../src/bloomfilter/hierarchical.c"
+#include "../src/hash/sdbm.c"
 
 #define NUM_BITS    (PAGE_SIZE_BITS*10)
 

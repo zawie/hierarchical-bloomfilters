@@ -7,7 +7,7 @@ GEN_FILEPATH = ./gen
 build:
 	gcc -DTYPE=Standard -DINIT=bloomfilter_init -DINSERT=bloomfilter_insert -DQUERY=bloomfilter_check $(SRCDIR)/main.c -o ./standard
 	gcc -DTYPE=Hierarchical -DINIT=h_bloomfilter_init -DINSERT=h_bloomfilter_insert -DQUERY=h_bloomfilter_check $(SRCDIR)/main.c -o ./hierarchical
-	gcc $(SRCDIR)/generator.c -o $(GEN_FILEPATH)
+	gcc $(SRCDIR)/gen.c -o $(GEN_FILEPATH)
 
 unit:
 	for test_file in $(TSTDIR)/* ; do \

@@ -1,4 +1,4 @@
-#include "bloomfilter.h"
+#include "standard.h"
 
 #define BF_INDEX(bloomfilt, key, config_index) ((unsigned int)(hash(key, bloomfilt->hash_configs[config_index]) % bloomfilt->num_bits))
 

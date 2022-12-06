@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "bitarr.h"
+#include "../bitarr/bitarr.h"
 
-#include "hash/hash.h"
+#include "../hash/hash.h"
 
 #define BLOOMFILTER_HASH_FUNCTION_COUNT     7   //This is "k"
 

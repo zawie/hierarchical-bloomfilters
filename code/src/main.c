@@ -11,11 +11,11 @@
 
 #include "hash/sdbm.c"
 
-#include "h_bloomfilter.h"
-#include "h_bloomfilter.c"
+#include "bloomfilter/hierarchical.h"
+#include "bloomfilter/hierarchical.c"
 
-#include "bloomfilter.h"
-#include "bloomfilter.c"
+#include "bloomfilter/standard.h"
+#include "bloomfilter/standard.c"
 
 #define BITS_PER_ELEMENT    10  //This is "n/m"
 #define MIL                 1000000
