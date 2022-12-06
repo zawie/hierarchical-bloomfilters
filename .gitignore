@@ -6,6 +6,7 @@ core.*
 
 #Ignore executables
 *.exe
+*.o
 
 #Ignore extra LaTeX artifacts
 writeup/*

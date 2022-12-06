@@ -9,27 +9,16 @@
 #include <fcntl.h>
 #include <sys/time.h>
 
+#include "hash/hash.h"
 #include "hash/sdbm.c"
 
-#include "bloomfilter/hierarchical.h"
-#include "bloomfilter/hierarchical.c"
+#include "bloomfilter/bloomfilter.h"
 
-#include "bloomfilter/standard.h"
-#include "bloomfilter/standard.c"
+#define PAGE_SIZE_BYTES         ((unsigned) 4096)  //Page size in bytes
+#define PAGE_SIZE_BITS          ((unsigned) 32768) //Page size in bits
 
 #define BITS_PER_ELEMENT    10  //This is "n/m"
 #define MIL                 1000000
-
-/**
-    NOTE:
-    Must define TYPE, INIT, INSERT, QUERY macros in compiler:
-    For hierarchical implementaiton:
-	    gcc -DTYPE=Standard -DINIT=bloomfilter_init -DINSERT=bloomfilter_insert -DQUERY=bloomfilter_check $(SRCDIR)/main.c -o ./standard
-    For standard implementaiton:
-	    gcc -DTYPE=Hierarchical -DINIT=h_bloomfilter_init -DINSERT=h_bloomfilter_insert -DQUERY=h_bloomfilter_check $(SRCDIR)/main.c -o ./hierarchical
-**/
-
-enum Type {Standard = 0, Hierarchical = 1}; 
 
 //Prototypes
 int parse_lines (char * mapped, const char *** lines_output);
@@ -94,19 +83,25 @@ int main(int argc, char *argv[]) {
     /*
         Initialize bloom filters
     */
-    int page_count = (requested_bits/PAGE_SIZE_BITS) + (requested_bits % PAGE_SIZE_BITS == 0 ? 0 : 1);
-    int actual_bits = page_count*PAGE_SIZE_BITS;
+    int num_pages = (requested_bits/PAGE_SIZE_BITS) + (requested_bits % PAGE_SIZE_BITS == 0 ? 0 : 1);
+    int num_bits = num_pages*PAGE_SIZE_BITS;
 
-    assert(actual_bits % PAGE_SIZE_BITS == 0);
+    // assert(num_bits % PAGE_SIZE_BITS == 0);
 
     printf("Bit array size\n");
-    printf("\ttype:\t%s\n", TYPE == Hierarchical ? "hierarchial" : "standard");
-    printf("\tmb:\t%f\n", ((double) actual_bits)/8000000.0);
-    printf("\tbits:\t%i\n", actual_bits);
-    printf("\tpages:\t%i\n", actual_bits/PAGE_SIZE_BITS);
-    printf("\tbits per elements:\t%f\n", ((double) actual_bits)/insert_keys_size);
+    printf("\tmb:\t%f\n", ((double) num_bits)/8000000.0);
+    printf("\tbits:\t%i\n", num_bits);
+    printf("\tpages:\t%i\n", num_bits/PAGE_SIZE_BITS);
+    printf("\tbits per elements:\t%f\n", ((double) num_bits)/insert_keys_size);
 
-    void * bf_p = INIT(actual_bits);
+    // Initialize bloom filter
+    bloomfilt_t bf;
+    bf.bitarr = INIT_BITARR(num_bits);
+    bf.num_bits = num_bits;
+    bf.num_pages = num_pages;
+
+    for(i = 0; i < HASH_CONFIGS; i++) 
+        bf.hash_configs[i] = generate_hash_config();   
 
     /*
         Time inserts on bloom filter
@@ -116,7 +111,7 @@ int main(int argc, char *argv[]) {
 
     t0 = clock(); //Start timer
     for (i = 0; i < insert_keys_size; i++)
-        INSERT(bf_p, (char *) insert_keys[i]);
+        bloomfilter_insert(&bf, (char *) insert_keys[i]);
     t1 = clock(); //End timer
 
     double seconds = ((double) (t1 - t0)) / CLOCKS_PER_SEC;
@@ -133,7 +128,7 @@ int main(int argc, char *argv[]) {
     int r_pos = 0;
 
     for (i = 0; i < query_keys_size; i++) {
-        if (QUERY(bf_p, (char *) query_keys[i]))
+        if (bloomfilter_query(&bf, (char *) query_keys[i]))
             r_pos++;
     }
 

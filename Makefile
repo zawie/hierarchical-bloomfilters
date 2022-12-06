@@ -5,10 +5,13 @@ TEST_EXE_NAME = test.generated.exe
 GEN_FILEPATH = ./gen
 
 build:
-	gcc -DTYPE=Standard -DINIT=bloomfilter_init -DINSERT=bloomfilter_insert -DQUERY=bloomfilter_check $(SRCDIR)/main.c -o ./standard
-	gcc -DTYPE=Hierarchical -DINIT=h_bloomfilter_init -DINSERT=h_bloomfilter_insert -DQUERY=h_bloomfilter_check $(SRCDIR)/main.c -o ./hierarchical
+	gcc $(SRCDIR)/main.c -o main.o -c
+	gcc $(SRCDIR)/bloomfilter/standard.c -o standard_bf.o -c
+	gcc $(SRCDIR)/bloomfilter/hierarchical.c -o hierarchical_bf.o -c
+	gcc -o standard main.o standard_bf.o
+	gcc -o hierarchical main.o hierarchical_bf.o
 	gcc $(SRCDIR)/gen.c -o $(GEN_FILEPATH)
-
+	
 unit:
 	for test_file in $(TSTDIR)/* ; do \
 		echo -e "-----------------------\nRunning test" $${test_file} "\n-----------------------"; \
@@ -23,6 +26,7 @@ clean:
 	rm -f gen
 	rm -f hierarchical
 	rm -f standard
+	rm -f *.o
 
 clean_all:
 	make clean

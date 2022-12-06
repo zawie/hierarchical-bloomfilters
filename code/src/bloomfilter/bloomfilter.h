@@ -9,21 +9,15 @@
 
 #include "../hash/hash.h"
 
-#define BLOOMFILTER_HASH_FUNCTION_COUNT     7   //This is "k"
+#define BIT_SELECTORS       7   //This is "k"
+#define HASH_CONFIGS        BIT_SELECTORS + 1   //Number of hash function configuration slots to save
 
 typedef struct bloom_filter {
-    hash_config_t hash_configs [BLOOMFILTER_HASH_FUNCTION_COUNT];   // Hash function configurations
+    hash_config_t hash_configs [HASH_CONFIGS];   // Hash function configurations
     byte_t * bitarr;    // Underlying bit array
     unsigned num_bits;  // Size of the bit array in bits
+    unsigned num_pages;  // Size of the bit array in bits
 } bloomfilt_t;
-
-/**
- * Intializes a bloom filter
- * 
- * @param num_bits  the number of bits to initialize in the underlying bit array
- * @returns         a pointer to an empty bloom filter 
- */
-inline bloomfilt_t * bloomfilter_init(unsigned num_bits);
 
 /**
  * Inserts a key into a bloom filter
