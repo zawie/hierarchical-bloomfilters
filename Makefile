@@ -11,7 +11,8 @@ build:
 	gcc -o standard main.o standard_bf.o
 	gcc -o hierarchical main.o hierarchical_bf.o
 	gcc $(SRCDIR)/gen.c -o $(GEN_FILEPATH)
-	
+	rm -f *.o
+
 unit:
 	for test_file in $(TSTDIR)/* ; do \
 		echo -e "-----------------------\nRunning test" $${test_file} "\n-----------------------"; \
