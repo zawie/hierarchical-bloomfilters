@@ -12,9 +12,16 @@ gnuplot -persist <<-EOFMarker
     set term png   
     set output "$PLOT_FILE"
 
-    set style line 1 lw 4 lc rgb '#990042' pt 6 pi 5   
-    set style line 2 lw 3 lc rgb '#31f120' pt 12 pi 3
+    set style line 1 lw 1 lc rgb '#0000FF' pt 6 lt 5
+    set style line 2 lw 1 lc rgb '#FF0000' pt 6 lt 5
 
-    plot "$1" using 1:2 title 'Standard' ls 1,\
-         "$1" using 1:3 title 'Hierarchial' ls 2 
+    f(x) = m*x + b
+    g(x) = k*x + l
+
+    fit f(x) "$1" using 1:2 via m,b
+    fit g(x) "$1" using 1:3 via k,l
+
+    plot "$1" using 1:2 title "Standard" with points ls 1, f(x) title "Standard Fit" ls 1, \
+         "$1" using 1:3 title "Hierarchial" with points ls 2, g(x) title "Hierarchial Fit" ls 2
+
 EOFMarker
