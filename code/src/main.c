@@ -15,7 +15,7 @@
 #include "bloomfilter/bloomfilter.h"
 
 #define PAGE_SIZE_BYTES         ((unsigned) 4096)  //Page size in bytes
-#define PAGE_SIZE_BITS          ((unsigned) 32768) //Page size in bits
+#define PAGE_SIZE_BITS          ((unsigned) PAGE_SIZE_BYTES*8) //Page size in bits
 
 #define BITS_PER_ELEMENT    10  //This is "n/m"
 #define MIL                 1000000
@@ -29,11 +29,11 @@ int parse_lines (char * mapped, const char *** lines_output);
 */
 int main(int argc, char *argv[]) {
 
-    //Set random seed
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    unsigned seed = tv.tv_usec * tv.tv_sec;
-    srand(seed);
+    // //Set random seed
+    // struct timeval tv;
+    // gettimeofday(&tv, NULL);
+    // unsigned seed = tv.tv_usec * tv.tv_sec;
+    // srand(seed);
 
     clock_t t0, t1;
     

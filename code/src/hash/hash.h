@@ -1,6 +1,8 @@
 #ifndef _HASH_H
 #define _HASH_H
 
+#define HASH_MOD(key, config, m) (hash(key, config) % m)
+
 typedef unsigned long hash_config_t;
 typedef unsigned long hash_t;
 

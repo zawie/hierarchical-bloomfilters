@@ -5,7 +5,7 @@ DAT_FILE="experiments/dats/$ID.dat"
 LOG_FILE="experiments/logs/$ID.log"
 DATA_FILE="data/$ID.txt"
 
-N=10000000
+N=20000000
 
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
 echo "# N=$N" >> $DAT_FILE

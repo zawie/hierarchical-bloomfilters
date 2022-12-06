@@ -17,13 +17,13 @@ int main(int argc, char *argv[]) {
     int key_size = atoi(argv[2]);
     int amount  = atoi(argv[3]);
     
-    //Set random seed
-    struct timeval t1;
-    gettimeofday(&t1, NULL);
-    unsigned seed = t1.tv_usec * t1.tv_sec;
-    srand(seed);
+    // //Set random seed
+    // struct timeval t1;
+    // gettimeofday(&t1, NULL);
+    // unsigned seed = t1.tv_usec * t1.tv_sec;
+    // srand(seed);
 
-    printf("Generating %i keys of size %i to file \"%s\" with seed %i.\n", amount, key_size, filename, seed);
+    // printf("Generating %i keys of size %i to file \"%s\" with seed %i.\n", amount, key_size, filename, seed);
 
     int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 

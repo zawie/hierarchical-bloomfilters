@@ -21,7 +21,7 @@ gnuplot -persist <<-EOFMarker
     fit f(x) "$1" using 1:2 via m,b
     fit g(x) "$1" using 1:3 via k,l
 
+    set yrange [0:]
     plot "$1" using 1:2 title "Standard" with points ls 1, f(x) title "Standard Fit" ls 1, \
          "$1" using 1:3 title "Hierarchial" with points ls 2, g(x) title "Hierarchial Fit" ls 2
-
 EOFMarker
