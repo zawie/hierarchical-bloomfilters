@@ -39,7 +39,7 @@ The slope of the line of best fits that are plotted are as follows whre $n$ is m
     \item The best fit line for the standard implementation is: $t = (1.1078 \pm 0.01446 )\cdot n - (5.78611   \pm 0.7407)$
     \item The best fit line for the hierarchical implementation is: $t = (0.893221 \pm 0.01166 )\cdot n - (4.52759 \pm 0.597 )$
 \end{itemize}
-We can compute the efficiency difference by dividing the slopes:
+We will disregard the constant as we care about how these data structures perform as input volume scales. We can compute the efficiency difference by dividing the slopes:
 $$\text{Hierarchical Implementation Slope}/ \text{Standard Implementation Slope} = \text{Efficiency Difference}$$
 $$(0.893221 \pm 0.01166 \text{ seconds/operation}) / (1.1078 \pm 0.01446 \text{ seconds/operation}) = 0.806301679 \approx 80\%$$
 In other words, our implementation takes $80\%$ less time per operation to complete. 
