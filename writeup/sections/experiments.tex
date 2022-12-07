@@ -14,18 +14,22 @@ We do not anticipate the hierarchial implementation to outperform the standard i
 For each of these sections, we pseudorandomly generate keys to both insert and query.
 Discussion on exactly how these keys are generated is discussed in the appendix.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Comparing Time Efficiency}
 
 For this experiment, we seek to validate that the hierarchical implementation performs better than the standard implementation as the number of insertions grow.
-\textit{Hypothesis:} The hierarchial bloom filter will take less time than the standard implementation to insert $n$ keys for any $n$.
+\textit{Hypothesis:} The hierarchical bloom filter will take less time than the standard implementation to insert $n$ keys for any $n$.
 
 \subsubsection{Experimental Settings}
 
-The experiment will run as follows:
+The experiment will run as follows. For each implementaiton run the following procedure:
 \begin{enumerate}
     \item Generate $n$ random keys.
     \item Generate a bloom filter of both varianets of size $10n$. Use the optimal theoeretical configuraiton for each bloom filter (i.e, $k=7$, $l=1$).
-    \item Time how long it takes to insert all $n$ keys into each of the bloom filters.
+    \item Time how long it takes to insert all $n$ keys into each of the bloom filters. Report this number.
     \item Repeat for various sizes of $n$.
 \end{enumerate}
 
@@ -42,3 +46,39 @@ Thus, our experiment shows that the hierarchical implementation performs $35\%$ 
 
 \subsubsection{Conclusion}
 We have supported our hypothesis that the hierarchical implementation is more efficient than the standard implementation. In fact, it can perform $35\%$ more operations per second.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Comparing False Positive Rate}
+
+For this experiment, we seek to validate that the hierarchical implementation does not have a worse false positive rate than the standard implementation.
+\textit{Hypothesis:} We expect them to have approximately the same false positive rate as the theoeretical expectation discussed earlier.
+
+\subsubsection{Experimental Settings}
+
+The experiment will run as follows. 
+\begin{enumerate}
+\item Generate $150,000$ random ``insertion'' keys (of length 16).
+\item Generate $150,000$ random ``false'' keys to query distinct from the insertion keys (of length 15).
+\item For each implementaiton run the following procedure:
+\begin{enumerate}
+    \item Let $BPE$ be the bits per element (e.g $BPE = 1$ or $BPE = 10$).
+    \item Generate a bloom filter of size $150,000\cdot BPE$.
+    \item Insert all the `insertion'' keys and query all the ``false'' keys and measure how many of them the bloom filter return. Report this number.
+    \item Repeat for various values of $BPE$.
+\end{enumerate}
+\item Repeat this procedure again $3$ times with different insertion and false keys.
+\end{enumerate}
+
+\subsubsection{Results}
+\begin{center}
+    \includegraphics[width=14cm]{plots/fp.png}
+\end{center}
+
+As we can see, both the standard and hierarchical implementation closely match the theoeretical expectation. 
+Both implementations do worse than theoeretically expected if bloom filters are overpacked, but after Bits per Elements is greater than 6, both implementations are very close to theoeretical expectation ($\pm -0.0005$) or better.
+
+\subsubsection{Conclusion}
+We have supported our hypothesis that the hierarchical implementation is just as effective as the standard implementation. 
