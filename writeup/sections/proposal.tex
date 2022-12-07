@@ -1,0 +1,29 @@
+\newcommand{\sep}{\hspace*{0.15in}}
+\newcommand\cell{%%
+    \fbox{\rule{0.15in}{0pt}\rule[-0.5ex]{0pt}{0.15in}}}
+
+Before we discuss the proposed solution, let us highlight the weakness of the standard implementation.
+The standard implementation allocates a bit vector of size $m$ bits. Typically, this is set to be $\times 10$ the expected number of elements it will hold.
+The figure below represents the bit vector of length $m$.
+
+\begin{center}
+    \textit{Standard Bloom Filter}
+    \vspace{10pt}\\
+    $\text{Bit Vector: } \cell\cell\cell\cell\cell\cell\cell\cell\cell\cell\cell\cell \ldots$
+    \vspace{10pt}\\
+    \textbf{Figure 1}
+\end{center}
+
+Notice, that if $m$ is sufficiently large, it will span accross multiple pages of memory. 
+Thus, when we read and write to the underlying bit vector, we may page fault for every bit set, slowing down our insertions or queries.
+
+Our proposal is instead to allocate $w$ bit vectors of size $P$ bits, where $P$ is the number of bits of the computer system's page size, and $w$ is a number chosen such that $m = w \cdot P$.
+Notice, our proposed implementation uses the same amount of memory, but conceptually splits the bit vector into page size chunks.
+
+\begin{center}
+    \textit{Hierarchical Bloom Filter}
+    \vspace{10pt}\\
+    $\text{Bit Vector 1: }\cell\cell\cell\cell \sep \text{Bit Vector 2: }\cell\cell\cell\cell \sep \ldots \sep \text{Bit Vector $w$: }\cell\cell\cell\cell$
+    \vspace{10pt}\\
+    \textbf{Figure 2}
+\end{center}
