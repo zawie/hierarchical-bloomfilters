@@ -12,7 +12,6 @@ The figure below represents the bit vector of length $m$.
     \vspace{10pt}\\
     $\text{Bit Vector: } \cell\cell\cell\cell\cell\cell\cell\cell\cell\cell\cell\cell \ldots$
     \vspace{10pt}\\
-    \textbf{Figure 1}
 \end{center}
 
 Per the standard implementation, to insert an element we hash the element $k$ times and set the corresponding bit in the vector.
@@ -29,7 +28,6 @@ Notice, our proposed implementation uses the same amount of memory, but  splits 
     \vspace{10pt}\\
     $\text{Bit Vector 1: }\cell\cell\cell\cell \sep \text{Bit Vector 2: }\cell\cell\cell\cell \sep \ldots \sep \text{Bit Vector $w$: }\cell\cell\cell\cell$
     \vspace{10pt}\\
-    \textbf{Figure 2}
 \end{center}
 
 To insert, hash the element $l$ times mod $w$ and insert the element per the standard bloom filter operations to the corresponding bit vector.
