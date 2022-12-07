@@ -1,15 +1,11 @@
 We will now emperically validate that the hierarchical implementation is more time efficient than the standard implementation without sacrificying accuracy.
-Three experiments will be conducted.
+Two experiments will be conducted.
 
 First, we will \textbf{measure elapsed time as insertions scale} of each implementation.
 We anticpate that the hierarchical implementation will take less time than the standard implementation for any sufficiently large value of insertions.
 
 Second, we will \textbf{measure false positives as we scale bits allocated per element} of each implementation.
 We anticipate that the hierarchial and standard implementation will be approximately same as the theoerical false positive rate discussed before.
-
-Third, we will \textbf{measure throughput as insertions scale with a fixed bitarray size.}
-The primary intention of this experiment is to explore the hierarchial implementation's efficiency for small bitarray sizes.
-We do not anticipate the hierarchial implementation to outperform the standard implementation for bitarray's of less than one page size.
 
 For each of these sections, we pseudorandomly generate keys to both insert and query.
 Discussion on exactly how these keys are generated is discussed in the appendix.
