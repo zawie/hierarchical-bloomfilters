@@ -36,10 +36,15 @@ Repeat this entire process $3$ times.
 \end{center}
 The slope of the line of best fits that are plotted are as follows whre $n$ is millions of insertions:
 \begin{itemize}
-    \item The best fit line for the standard implementation is: $t = 1.07146\cdot n - 5.83917$
-    \item The best fit line for the hierarchical implementation is: $t = 0.789073\cdot n -3.64732 $
+    \item The best fit line for the standard implementation is: $t = (1.1078 \pm 0.01446 )\cdot n - (5.78611   \pm 0.7407)$
+    \item The best fit line for the hierarchical implementation is: $t = (0.893221 \pm 0.01166 )\cdot n - (4.52759 \pm 0.597 )$
 \end{itemize}
-Thus, our experiment shows that the hierarchical implementation performs $35\%$ more operations per second than the standard implementation!
+We can compute the efficiency difference by dividing the slopes:
+$$\text{Hierarchical Implementation Slope}/ \text{Standard Implementation Slope} = \text{Efficiency Difference}$$
+$$(0.893221 \pm 0.01166 \text{ seconds/operation}) / (1.1078 \pm 0.01446 \text{ seconds/operation}) = 0.806301679 \approx 80\%$$
+In other words, our implementation takes $80\%$ less time per operation to complete. 
+Thus, for any time frame, if the standard implementation performs one operation, the hierarchical implementation is expected to perform $1/80\% = 1.25$ operations.
+Thus, our experiment shows that the hierarchical implementation performs $25\%$ more operations per second than the standard implementation!
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -76,5 +81,5 @@ Both implementations do worse than theoeretically expected if bloom filters are 
 
 \subsection{Conclusion}
 Our experiments have supported both of our theoretically justified hypothesises.
-We have demonstrated that the hierarchical implementation is more efficient than the standard implementation; it can perform $35\%$ more operations per second!
+We have demonstrated that the hierarchical implementation is more efficient than the standard implementation; it can perform $25\%$ more operations per second!
 Additionally, we have verified our that our implementation is just as effective as the standard implementation. 
