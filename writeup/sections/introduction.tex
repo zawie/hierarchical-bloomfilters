@@ -1,0 +1,9 @@
+In this section I will describe the proposed hierarchial blooom filter implementaiton in detail.
+
+Our hierarchial bloom filter will be a collection of bloom filters of the computer systems page size (4096 bytes).
+We will have as many bloom filters as it takes to occupy $M$ bits. $M$ sohuld be $10N$ where $N$ is the number of expected keys to be in the bloom filter.
+We will generate $8$ independent hash functions. 1 hash function will be used to select the sub-bloom filter; the other $7$ will be used to set bits in the baby bloom filter as the standard implementation.
+
+The idea behind this is that we minimize page faults, as we only need to access one page of memory to set bits instead of up to $7$.
+
+The numbers selected will be justified in the \textit{Theoretical Justification} section.

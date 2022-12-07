@@ -1,0 +1,7 @@
+In my literature survey, I discovered a similar approach except making bloom filters hierarchial.
+Tim Kaler's proposed cache-efficient bloom filters \cite{Kaler} makes sub-bloom filters of size cache-size; thus, their idea is very similar to mine except they do it on a smaller unit of memory.
+
+Evgeni Krimer and Mattan Erez used a power-of-two choice principle within blocked-bloom filters to decrease the false positive rate.
+Instead of simply selecting one block to write into, they choose multiple.
+\cite{Krimer}.
+

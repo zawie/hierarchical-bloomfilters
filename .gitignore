@@ -13,6 +13,9 @@ writeup/*
 !writeup/*.tex
 !writeup/*.bib
 !writeup/*.pdf
+!writeup/sections
+writeup/sections/*
+!writeup/sections/*.tex
 
 #Ignore generated files
 *.generated.*
