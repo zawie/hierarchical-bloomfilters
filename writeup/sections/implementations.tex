@@ -21,8 +21,8 @@ Notice, that if $m$ is sufficiently large, it will span accross multiple pages o
 Thus, when we read and write to the underlying bit vector, we may page fault for every bit set, slowing down our insertions or queries.
 
 \subsection{Proposed Hierarchical Implementation}
-Our proposal is to allocate $w$ bit vectors of size $P$ bits, where $P$ is the number of bits of the computer system's page size, and $w$ is an integer chosen such that $m = w \cdot P$.
-Notice, our proposed implementation uses the same amount of memory, but conceptually splits the bit vector into page size chunks.
+Our proposal is to allocate $w$ bit vectors of size $P$ bits, where $P$ is computer system's page size in bits and $w$ is an integer such that $m = w P$.
+Notice, our proposed implementation uses the same amount of memory, but  splits the bit vector into page size chunks.
 
 \begin{center}
     \textit{Hierarchical Bloom Filter}
@@ -35,8 +35,10 @@ Notice, our proposed implementation uses the same amount of memory, but conceptu
 To insert, hash the element $l$ times mod $w$ and insert the element per the standard bloom filter operations to the corresponding bit vector.
 Each bit vector (bloom filter) has $k$ hash functions associated with it.
 Here $l$ is a pre-determined parameter of the datastructure; we will dicuss what the optimal setting is in a following section.
-Likewise, to query, we simply query the corresponding bit vector instead of inserting.
+To query, we simply query the corresponding bit vector instead of inserting.
 In essence, our proposal to create a bloom filter of bloom filters, hence the name.
 
-Since each bit vector is on it's own page of memory, we expect to page fault at most $l$ times.
- Thus, if we minimize $l$ without sacrificing effectiveness, we will reduce the expected number of page faults and increase the data structures performance.
+Notice, for any given insertion or query, we have to perform $l$ more hash operations than the standard implementation. 
+This is not a concern if we select sufficiently cheap hash functions.
+More importantly, ince each bit vector is on it's own page of memory, we expect to page fault at most $l$ times.
+ Thus, if we minimize $l$ without sacrificing effectiveness, we will reduce the expected number of page faults and increase the data structures efficiency.
