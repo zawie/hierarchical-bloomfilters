@@ -2,6 +2,7 @@
 \newcommand\cell{%%
     \fbox{\rule{0.15in}{0pt}\rule[-0.5ex]{0pt}{0.15in}}}
 
+\subsection{Standard Implementation}
 Before we discuss the proposed solution, let us highlight the weakness of the standard implementation.
 The standard implementation allocates a bit vector of size $m$ bits. Typically, this is set to be $\times 10$ the expected number of elements it will hold.
 The figure below represents the bit vector of length $m$.
@@ -14,10 +15,13 @@ The figure below represents the bit vector of length $m$.
     \textbf{Figure 1}
 \end{center}
 
+Per the standard implementation, to insert an element we hash the element $k$ times and set the corresponding bit in the vector.
+To query, we simply read instead of set the bit.
 Notice, that if $m$ is sufficiently large, it will span accross multiple pages of memory. 
 Thus, when we read and write to the underlying bit vector, we may page fault for every bit set, slowing down our insertions or queries.
 
-Our proposal is instead to allocate $w$ bit vectors of size $P$ bits, where $P$ is the number of bits of the computer system's page size, and $w$ is a number chosen such that $m = w \cdot P$.
+\subsection{Proposed Hierarchical Implementation}
+Our proposal is to allocate $w$ bit vectors of size $P$ bits, where $P$ is the number of bits of the computer system's page size, and $w$ is an integer chosen such that $m = w \cdot P$.
 Notice, our proposed implementation uses the same amount of memory, but conceptually splits the bit vector into page size chunks.
 
 \begin{center}
@@ -27,3 +31,12 @@ Notice, our proposed implementation uses the same amount of memory, but conceptu
     \vspace{10pt}\\
     \textbf{Figure 2}
 \end{center}
+
+To insert, hash the element $l$ times mod $w$ and insert the element per the standard bloom filter operations to the corresponding bit vector.
+Each bit vector (bloom filter) has $k$ hash functions associated with it.
+Here $l$ is a pre-determined parameter of the datastructure; we will dicuss what the optimal setting is in a following section.
+Likewise, to query, we simply query the corresponding bit vector instead of inserting.
+In essence, our proposal to create a bloom filter of bloom filters, hence the name.
+
+Since each bit vector is on it's own page of memory, we expect to page fault at most $l$ times.
+ Thus, if we minimize $l$ without sacrificing effectiveness, we will reduce the expected number of page faults and increase the data structures performance.
