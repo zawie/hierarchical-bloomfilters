@@ -11,6 +11,8 @@ echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
 echo "#n (1e6)   standard (s)    hierarchal (s)" >> $DAT_FILE
 
 #Run experiments
+for c in 1, 2, 3
+do
 for N in $@
 do
     #Output progress to stdout
@@ -53,6 +55,7 @@ done
 
 #Clean up generated data file
 rm $DATA_FILE
+done
 
 #Wait for DAT file to flush
 sleep 1

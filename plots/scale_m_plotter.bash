@@ -17,5 +17,5 @@ gnuplot -persist <<-EOFMarker
     set style line 2 lw 1 lc rgb '#FF0000' pt 6 lt 5
 
     plot "$1" using 1:2 title 'Standard' ls 1,\
-         "$1" using 1:3 title 'Hierarchial' ls 2 
+         "$1" using 1:3 title 'Hierarchial' ls 2;
 EOFMarker

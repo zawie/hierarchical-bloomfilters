@@ -5,7 +5,7 @@ DAT_FILE="experiments/dats/$ID.dat"
 LOG_FILE="experiments/logs/$ID.log"
 DATA_FILE="data/$ID.txt"
 
-N=20000000
+N=10000000
 
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
 echo "# N=$N" >> $DAT_FILE
@@ -14,7 +14,7 @@ echo "#pages   standard (ops/s)    hierarchal (ops/s)" >> $DAT_FILE
 
 #Generate data
 echo "Generating $N keys to inserts"
-./gen $DATA_FILE 8 $N > /dev/null
+./gen $DATA_FILE 32 $N > /dev/null
 
 echo "Beginning experiments..."
 #Run experiments

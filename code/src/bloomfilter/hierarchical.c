@@ -10,11 +10,6 @@
 inline void bloomfilter_insert(bloomfilt_t * bloomfilt, char* key) {
     unsigned j;
 
-    if (bloomfilt->num_pages == 0) {
-        for(j = 1; j <= BIT_SELECTORS; j++) 
-            SET_BITARR(bloomfilt->bitarr, MINOR_INDEX(bloomfilt, key, j));
-    }
-
     byte_t * subfilter = GET_SUBFILTER(bloomfilt, key);
     for(j=1; j <= BIT_SELECTORS; j++) 
         SET_BITARR(subfilter, MINOR_INDEX(bloomfilt, key, j));

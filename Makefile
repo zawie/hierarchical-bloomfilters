@@ -28,6 +28,7 @@ clean:
 	rm -f hierarchical
 	rm -f standard
 	rm -f *.o
+	rm -f data/*
 
 clean_all:
 	make clean

@@ -29,11 +29,11 @@ int parse_lines (char * mapped, const char *** lines_output);
 */
 int main(int argc, char *argv[]) {
 
-    // //Set random seed
-    // struct timeval tv;
-    // gettimeofday(&tv, NULL);
-    // unsigned seed = tv.tv_usec * tv.tv_sec;
-    // srand(seed);
+    //Set random seed
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    unsigned seed = tv.tv_usec * tv.tv_sec;
+    srand(seed);
 
     clock_t t0, t1;
     
@@ -99,6 +99,13 @@ int main(int argc, char *argv[]) {
     bf.bitarr = INIT_BITARR(num_bits);
     bf.num_bits = num_bits;
     bf.num_pages = num_pages;
+
+
+    // Have computer access every bytes in the bit array
+    for(i = 0; i < num_bits; i += 8) 
+        SET_BITARR(bf.bitarr, i);
+    for(i = 0; i < num_bits; i += 8)
+        UNSET_BITARR(bf.bitarr, i);
 
     for(i = 0; i < HASH_CONFIGS; i++) 
         bf.hash_configs[i] = generate_hash_config();   
