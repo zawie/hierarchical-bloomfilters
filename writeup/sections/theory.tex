@@ -1,0 +1,70 @@
+In this section we will justify why the hierarchical implementation will outperform the standard implementation in theory while preserving effectiveness.
+First, we will \textbf{calculate expected number of page faults} per implementation.
+Second, we will \textbf{find the theoeretical false positive rate}, which will guide us in our parameter selection for the implementation.
+
+\subsection{Expected Page Faults}
+Page faults occur when the operating system must fetch memory from a source higher in the memory hierarchy to be used by the process.
+Whenever a page fault occurs, the program must be halted unneccesarily to resolve the page fault, which could require relatively slow I/O operations such as checking the TLB or loading the page from memory or disk.
+This leads to slower performance.
+
+It is next to impossible to know when accessing a page will cause a page fault as this is highly dependant on the operating system.
+In general though, the more memory you are using, the higher the likelyhood a pagefault will occur.
+In this analysis we will assume more page accesses is coorelated with a higher liklihood of page faulting.
+We can formly compute the expected number of different pages that will be asccessed (unlike whether or not it will page fault).
+
+Note, when discussing page faults in this section, we will only discuss the page faults caused due to accessing the underlying bit vector of the bloom filter.
+Natuarelly, page faults can occur while running the underlying code of the bloom filter or running the hash functions, but this should be rare and would realistically only cause one page fault.
+
+First, we will discussed the expected number of page faults for the standard implementation.
+
+Let $A$ be a random variable representing the number of pages accessed. 
+Let $P$ be the number of bits in a page and let $m$ be the number of bits in the underlying bitvector.
+Suppose there are $k$ hash functions.
+We now define the indictor variable $A_i$ which is $1$ if bit $i$ is set, $0$ otherwise.
+$$A = A_1 + A_2 + \ldots + A_{m/P}$$
+Thus, the expected number of pages accessed can be found by computing the expected count that any page is accessed by the linearity of expectation:
+$$E(A) = \sum_{i=1}^{m/P} E(A_i) = \frac{m}{P} \cdot E(A_i) \text{ for arbitrary $i$}$$
+The probability that $A_i$ is accesed at least once is the inverse of it being never accessed.
+Assuming that our hash function is uniform, we expect it to pick any particular page with probability $\frac{1}{m/P} = \frac{P}{m}$.
+Thus, the probablity $A_i$ is accessed at least once is:
+$$E(A_i)  = 1 - (1 - \frac{P}{m})^k$$
+Ergo, we have a closed form equation for the expected number of page faults for a given operation:
+$$\text{Expected number of page accesses (Standard)} = \frac{m}{P} (1 - (1 - \frac{P}{m})^k)$$
+
+We will use this formula to compute the expected number of page faults for two reasonable cases.
+First, suppose you wanted a bloom filter to store $32,768$ elements with an underlying bit vector of size $\times 10$ that.
+Note, most computer systems have a page size of $4096$ bytes, so this works out to require exactly $10$ pages of memory.
+Additionally, suppose we pick the optimal bloom filter parameter and set $k=7$.
+Under this scenario, we anticpate:
+$$\text{Expected \# accesses (Standard)} = 10(1-0.9^7) \approx 5.2$$
+If we wanted to store $327,680$ elements under a similar setting, then the number of pages faults would be:
+$$\text{Expected \# accesses (Standard)} = 100(1-0.99^7) \approx 6.8$$
+
+As we can see, even using a relatively small bloom filter, we anticpate almost every bit to be located in an entirely different page.
+This means we can page fault multiple times during a single operation!
+
+Since our operation limits bit setting and reading to a single page per insertion or query, we need to access exactly one page!
+$$\text{Number of accesses (Hierarchical)} = 1$$
+
+Thus, our proposed hierarchical solution limits the number of page faults to at most one!
+Therefore, we anticpate much better performance.
+\subsection{False Positive Rate}
+
+\begin{equation}
+    f_p = (1 - (1 - \frac{1}{m}^{nk}))^k
+\end{equation}
+
+
+
+
+\subsubsection{Hierarchical Implementation}
+
+Suppose we have a allocated $m$ bits in total chunked into $w$ bit vectors of size $P$ bits:
+$$ m = wP$$
+Moreober, suppose we anticipate to insert $n$ elements are we allocate
+
+
+Assuming our hash function's output is uniform, we can conclude that for
+\begin{equation}
+    f_p = (1 - (1 - \frac{1}{m}^{nk}))^k
+\end{equation}
