@@ -29,32 +29,73 @@ Assuming that our hash function is uniform, we expect it to pick any particular 
 Thus, the probablity $A_i$ is accessed at least once is:
 $$E(A_i)  = 1 - (1 - \frac{P}{m})^k$$
 Ergo, we have a closed form equation for the expected number of page faults for a given operation:
-$$\text{Expected number of page accesses (Standard)} = \frac{m}{P} (1 - (1 - \frac{P}{m})^k)$$
+$$\text{Expected distinct pages accessed (Standard)} = \frac{m}{P} (1 - (1 - \frac{P}{m})^k)$$
 
 We will use this formula to compute the expected number of page faults for two reasonable cases.
 First, suppose you wanted a bloom filter to store $32,768$ elements with an underlying bit vector of size $\times 10$ that.
 Note, most computer systems have a page size of $4096$ bytes, so this works out to require exactly $10$ pages of memory.
 Additionally, suppose we pick the optimal bloom filter parameter and set $k=7$.
 Under this scenario, we anticpate:
-$$\text{Expected \# accesses (Standard)} = 10(1-0.9^7) \approx 5.2$$
+$$\text{Expected distinct pages accessed (Standard)} = 10(1-0.9^7) \approx 5.2$$
 If we wanted to store $327,680$ elements under a similar setting, then the number of pages faults would be:
-$$\text{Expected \# accesses (Standard)} = 100(1-0.99^7) \approx 6.8$$
+$$\text{Expected distinct pages accessed (Standard)} = 100(1-0.99^7) \approx 6.8$$
 
 As we can see, even using a relatively small bloom filter, we anticpate almost every bit to be located in an entirely different page.
 This means we can page fault multiple times during a single operation!
 
 Since our operation limits bit setting and reading to a single page per insertion or query, we need to access exactly one page!
-$$\text{Number of accesses (Hierarchical)} = 1$$
+$$\text{Distinct page accessed (Hierarchical)} = 1$$
 
 Thus, our proposed hierarchical solution limits the number of page faults to at most one!
 Therefore, we anticpate much better performance.
 \subsection{False Positive Rate}
 
+\subsubsection{Standard False Positive Rate}
+
 \begin{equation}
-    f_p = (1 - (1 - \frac{1}{m}^{nk}))^k
+    (1 - (1 - \frac{1}{m})^{nk})^k \approx (1 - (1 - e)^{kn/m})^k
 \end{equation}
 
 
+\subsubsection{Hierarchical False Positive Rate}
+We now want to compute the false positive rate of the hierarchical implementation.
+This can be computed by supposing the bloom filter has been filled with $n$ elements and computing the probability that a querying a false key would result in a true response.
+
+Assuming our hash function is uniform, any particular bloom filter is anticpated to have $\frac{nl}{m/P} = \frac{nlP}{m} $ elements in it.
+There are $m/P$ bloom filters and for any element we choose $l$ filters. As before $k$ is the number of hash functions a particular bloom filter uses.
+Thus, the chance any one bloom filter is set is:
+$$(1-(1 - \frac{1}{P})^{lknP/m})^k$$
+For our hierarchical implementation to return true, all $l$ bloom filters selected must return a positive result.
+Thus, the false positive rate is:
+$$((1 - \frac{1}{P})^{lknP/m})^{kl}$$
+We can use a well known identity for $e^{-1}$ to approximate this false positive rate:
+$$\approx (1 - e^{-lkn/m})^{lk}$$
+
+Interestingly, this removes the dependence on the page size.
+More importantly, this formula becomes isomorphic to the false positive rate for the standard implementation.
+If we let $k' := lk$ we see that our false positive rate for the hierarchical implementation is:
+$$\approx (1 - e^{-k'/m})^{k'}$$
+Therefore, as discussed for the standard implementation, the optimal selection for $k'$ is $7$.
+Therefore, either $l=1$ and $k=7$ or $l=7$ and $k=1$.
+Since our goal is reduce the number of pages accessed, the former is a more sensible choice.
+
+Therefore, the best parameter selection for our hierarchical implementation would be to select $1$ bloom filter the size of a bloom filter and set $7$ bits in each one.
+$$l = 1\text{ ; } k = 7$$
+
+% $$(1 - \frac{1}{P})^{kl \cdot n / (m/P)}$$
+% $$(1 - \frac{1}{P})^{kl \cdot n P/ m}$$
+% $$( 1 - (1 - \frac{1}{P})^{kl \cdot n P/ m})^{kl}$$
+
+% $$\approx ( 1 - e^{(kl \cdot n P/ m)/P})^{kl}$$
+% $$= ( 1 - e^{(kl \cdot n / m)})^{kl}$$
+
+% $$(1 - \frac{1}{P})^{kl \cdot n}$$
+
+% $$(1 - \frac{1}{P})^{kl \cdot n}$$
+
+% \begin{equation}
+%     f_h = (1 - (1 - \frac{1}{m})^{nkl})^{kl}
+% \end{equation}
 
 
 \subsubsection{Hierarchical Implementation}
