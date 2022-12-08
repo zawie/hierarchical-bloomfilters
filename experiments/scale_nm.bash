@@ -2,52 +2,49 @@ TIMESTAMP=`date +%F_%T`
 
 ID="scale-nm_$TIMESTAMP"
 DAT_FILE="experiments/dats/$ID.dat"
-LOG_FILE="experiments/logs/$ID.log"
 DATA_FILE="data/$ID.txt"
 
 #Write header
+echo "# WHACK ALERT!"
 echo "# Desc: Fix number of operations and scale bliim filter size" >> $DAT_FILE
 echo "# timestamp=$TIMESTAMP" >> $DAT_FILE
-echo "#n (1e6)   standard (s)    hierarchal (s)" >> $DAT_FILE
+echo "#n (1e6)   standard (s)    hierarchal4096 (s) hierarchal1024(s)  hierarchal256 (s)  hierarchal64 (s)  hierarchal8 (s)" >> $DAT_FILE
+
+BPE="10"
 
 #Run experiments
 for c in 1, 2, 3
 do
 for N in $@
 do
+
+    M=$(($N*$BPE))
+
     #Output progress to stdout
     echo "N=$N"
 
     #Generate data
     ./gen $DATA_FILE 8 $N > /dev/null
 
-    #Run experiments
-    S_RESULT=`./standard $DATA_FILE /dev/null`
-    H_RESULT=`./hierarchical $DATA_FILE /dev/null`
+    #Run standard
+    S_RESULT=`./hierarchical $DATA_FILE /dev/null $M 4096`
 
-    echo "N=$N" >> $LOG_FILE
-    echo "$S_RESULT" >> $LOG_FILE
-    echo "$H_RESULT" >> $LOG_FILE
-
-    #Parse results
-    PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$S_RESULT"`
-   
+    #Parse results of standard
+    # PAGE_COUNT=`grep -oP 'pages:\s*\K\d+' <<< "$S_RESULT"`
     S_SECONDS=`grep -oP 'seconds:\s*\K\d+(\.\d+)?' <<< "$S_RESULT"`
-    H_SECONDS=`grep -oP 'seconds:\s*\K\d+(\.\d+)?' <<< "$H_RESULT"`
-    S_THRU=`grep -oP 'throughput:\s*\K\d+(\.\d+)?' <<< "$S_RESULT"`
-    H_THRU=`grep -oP 'throughput:\s*\K\d+(\.\d+)?' <<< "$H_RESULT"`
     N_IN_MIL=`grep -oP 'insert count in millions:\s*\K\d+(\.\d+)?' <<< "$S_RESULT"`
 
-    #Output results to stdout
-    echo "n (1e6) : $N_IN_MIL"
-    echo "pages count:  $PAGE_COUNT"
-    echo "standard:   $S_SECONDS (s)"
-    echo "standard:   $S_THRU (ops/s)"
-    echo "hierarchial:   $H_SECONDS (s)"
-    echo "hierarchial:   $H_THRU (ops/s)"
+    # Run hierarchical with various sub sizes
+    H_OUT=""
+    for s in 4096, 1024, 256, 64, 8
+    do
+        H_RESULT=`./hierarchical $DATA_FILE /dev/null $M $s`
+        H_SECONDS=`grep -oP 'seconds:\s*\K\d+(\.\d+)?' <<< "$H_RESULT"`
+        H_OUT="$H_OUT $H_SECONDS"
+    done
 
     #Write results to row
-    echo "$N_IN_MIL    $S_SECONDS    $H_SECONDS" >> $DAT_FILE
+    echo "$N_IN_MIL    $S_SECONDS    $H_OUT" >> $DAT_FILE
 
     #Update plot, ignoring errors or warnings
     ./plots/scale_nm_plotter.bash $DAT_FILE > /dev/null

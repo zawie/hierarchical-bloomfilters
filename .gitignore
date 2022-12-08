@@ -34,5 +34,5 @@ data/*
 
 #Ignore executables
 gen
-hierarchical
+hierarchical*
 standard

@@ -14,9 +14,6 @@
 
 #include "bloomfilter/bloomfilter.h"
 
-#define PAGE_SIZE_BYTES         ((unsigned) 4096)  //Page size in bytes
-#define PAGE_SIZE_BITS          ((unsigned) PAGE_SIZE_BYTES*8) //Page size in bits
-
 #define BITS_PER_ELEMENT    10  //This is "n/m"
 #define MIL                 1000000
 
@@ -72,6 +69,7 @@ int main(int argc, char *argv[]) {
     }
 
     int requested_bits = (argc == 4) ? atoi(argv[3]) : insert_keys_size*BITS_PER_ELEMENT;
+    int sub_size = (argc == 5) ? atoi(argv[4]) : 4096; // Default to page size
 
     printf("Input overview\n");
     printf("\tinsert count:\t%i\n", insert_keys_size);
@@ -79,19 +77,20 @@ int main(int argc, char *argv[]) {
     printf("\tquery count:\t%i\n", query_keys_size);
     printf("\tquery count millions:\t%f\n",  ((double) query_keys_size) / MIL);
     printf("\trequested bits:\t%i\n", requested_bits);
-    
+    printf("\tsubbloom-filter size (not used in standard):\t%i\n", sub_size);
+
     /*
         Initialize bloom filters
     */
-    int num_pages = (requested_bits/PAGE_SIZE_BITS) + (requested_bits % PAGE_SIZE_BITS == 0 ? 0 : 1);
-    int num_bits = num_pages*PAGE_SIZE_BITS;
+    int num_pages = (requested_bits/(sub_size*8)) + (requested_bits % (sub_size*8) == 0 ? 0 : 1);
+    int num_bits = num_pages*sub_size*8;
 
     // assert(num_bits % PAGE_SIZE_BITS == 0);
 
     printf("Bit array size\n");
     printf("\tmb:\t%f\n", ((double) num_bits)/8000000.0);
     printf("\tbits:\t%i\n", num_bits);
-    printf("\tpages:\t%i\n", num_bits/PAGE_SIZE_BITS);
+    printf("\tpages:\t%i\n", num_bits/(sub_size*8));
     printf("\tbits per elements:\t%f\n", ((double) num_bits)/insert_keys_size);
 
     // Initialize bloom filter
@@ -99,7 +98,7 @@ int main(int argc, char *argv[]) {
     bf.bitarr = INIT_BITARR(num_bits);
     bf.num_bits = num_bits;
     bf.num_pages = num_pages;
-
+    bf.sub_size = sub_size;
 
     // Have computer access every bytes in the bit array
     for(i = 0; i < num_bits; i += 8) 

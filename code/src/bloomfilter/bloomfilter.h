@@ -16,7 +16,8 @@ typedef struct bloom_filter {
     hash_config_t hash_configs [HASH_CONFIGS];   // Hash function configurations
     byte_t * bitarr;    // Underlying bit array
     unsigned num_bits;  // Size of the bit array in bits
-    unsigned num_pages;  // Size of the bit array in bits
+    unsigned num_pages; // Size of the bit array in bits
+    unsigned sub_size;  // Size of sub filters in bits (hierarchical only)
 } bloomfilt_t;
 
 /**
