@@ -35,7 +35,7 @@ do
         
         #Run experiments
         S_RESULT=`./standard $INSERTS_KEYS $QUERY_KEYS $M`
-        H_RESULT=`./hierarchical64 $INSERTS_KEYS $QUERY_KEYS $M`
+        H_RESULT=`./hierarchical $INSERTS_KEYS $QUERY_KEYS $M 4096`
 
         echo "$S_RESULT" >> $LOG_FILE
         echo "$H_RESULT" >> $LOG_FILE

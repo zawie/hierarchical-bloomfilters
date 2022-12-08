@@ -1,7 +1,7 @@
 #include "bloomfilter.h"
 
 #define MAJOR_INDEX(bloomfilt, key)               ((unsigned int) HASH_MOD(key, bloomfilt->hash_configs[0], ((unsigned int) (bloomfilt->num_pages))))
-#define MINOR_INDEX(bloomfilt, key, config_index) ((unsigned int) HASH_MOD(key, bloomfilt->hash_configs[config_index], bloomfilt->sub_size*8))
+#define MINOR_INDEX(bloomfilt, key, config_index) ((unsigned int) HASH_MOD(key, bloomfilt->hash_configs[config_index], (bloomfilt->sub_size)*8))
 #define GET_SUBFILTER(bloomfilt, key)             ((byte_t *)     ( (byte_t *) bloomfilt->bitarr + MAJOR_INDEX(bloomfilt, key)*bloomfilt->sub_size))
 
 inline void bloomfilter_insert(bloomfilt_t * bloomfilt, char* key) {
