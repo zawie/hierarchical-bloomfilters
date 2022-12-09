@@ -5,14 +5,12 @@
 \subsection{Standard Implementation}
 Before we discuss the proposed solution, let us highlight the weakness of the standard implementation.
 The standard implementation allocates a bit vector of size $m$ bits. Typically, this is set to be $\times 10$ the expected number of elements it will hold.
-The figure below represents the bit vector of length $m$.
 
 \begin{center}
     \textit{Standard Bloom Filter}
     \vspace{10pt}\\
     $\text{Bit Vector: } \cell\cell\cell\cell\cell\cell\cell\cell\cell\cell\cell\cell \ldots$
     \vspace{10pt}\\
-    \textbf{Figure 1}
 \end{center}
 
 Per the standard implementation, to insert an element we hash the element $k$ times and set the corresponding bit in the vector.

@@ -54,7 +54,7 @@ Therefore, we anticpate much better performance.
 
 As we have covered in class, the false positive rate of a standard bloom filter is as follows.
 \begin{equation}
-    (1 - (1 - \frac{1}{m})^{nk})^k \approx (1 - (1 - e)^{kn/m})^k
+    (1 - (1 - \frac{1}{m})^{nk})^k \approx (1  - e)^{kn/m}
 \end{equation}
 
 Setting $k=7$ will minimize the false positive rate, as discussed in class.

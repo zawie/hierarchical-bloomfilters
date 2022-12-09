@@ -1,6 +1,7 @@
 Bloom filters \cite{Bloom} are used ubiquitously due to their speed and memory efficiency in theory and in practice.
 However, the standard implementation of sufficiently large bloom filters suffers from page faults.
-In this paper we propose a bloom filter implementation that guarantees one page access per insert or query. This minimizes page faults, thereby drasticaly improving efficiency.
-We will show theoretically and empirically that our hierarchical implementation is expected to be faster than the standard implementation.
+In this paper we propose a bloom filter implementation that guarantees one page access per operation. 
+This minimizes page faults, thereby drasticaly improving efficiency.
+We will show theoretically and empirically that our hierarchical implementation is expected to be faster than the standard implementation without alterating the false positive rate.
 
 \noindent\textbf{Keywords:} probabilistic data structures, bloom filters, memory hierarchy, implementation, page fault analysis
