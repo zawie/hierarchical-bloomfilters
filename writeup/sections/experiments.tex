@@ -15,7 +15,7 @@ Discussion on exactly how these keys are generated is outlined in the appendix.
 \subsection{Comparing Time Efficiency}
 
 For this experiment, we seek to validate that the hierarchical implementation performs better than the standard implementation as the number of insertions grow.
-\textit{Hypothesis:} The hierarchical bloom filter will take less time than the standard implementation to insert $n$ keys for any $n$.
+\textbf{Hypothesis: The hierarchical bloom filter will take less time than the standard implementation to insert $n$ keys for any $n$.}
 
 \subsubsection{Experimental Settings}
 
@@ -51,7 +51,7 @@ Thus, our experiment shows that the hierarchical implementation performs $25\%$ 
 \subsection{Comparing False Positive Rate}
 
 For this experiment, we seek to validate that the hierarchical implementation does not have a worse false positive rate than the standard implementation.
-\textit{Hypothesis:} We expect them to have approximately the same false positive rate as the theoeretical expectation discussed earlier.
+\textbf{Hypothesis: We expect them to have approximately the same false positive rate as the theoeretical expectation discussed earlier.}
 
 \subsubsection{Experimental Settings}
 
@@ -63,7 +63,7 @@ The experiment will run as follows.
 \begin{enumerate}
     \item Let $BPE$ be the bits per element (e.g $BPE = 1$ or $BPE = 10$).
     \item Generate a bloom filter of size $150,000\cdot BPE$.
-    \item Insert all the `insertion'' keys and query all the ``false'' keys and measure how many of them the bloom filter return. Report this number.
+    \item Insert all the `insertion'' keys and query all the ``false'' keys and measure how many of them the bloom filter return as being a member. Report this number.
     \item Repeat for various values of $BPE$.
 \end{enumerate}
 \item Repeat this procedure again $3$ times with different insertion and false keys.

@@ -3,7 +3,7 @@
     \fbox{\rule{0.15in}{0pt}\rule[-0.5ex]{0pt}{0.15in}}}
 
 \subsection{Standard Implementation}
-Before we discuss the proposed solution, let us highlight the weakness of the standard implementation.
+Before we discuss the proposed solution, let us review the standard implementation.
 The standard implementation allocates a bit vector of size $m$ bits. Typically, this is set to be $\times 10$ the expected number of elements it will hold.
 
 \begin{center}
@@ -16,7 +16,7 @@ The standard implementation allocates a bit vector of size $m$ bits. Typically, 
 Per the standard implementation, to insert an element we hash the element $k$ times and set the corresponding bit in the vector.
 To query, we simply read instead of set the bit.
 Notice, that if $m$ is sufficiently large, it will span accross multiple pages of memory. 
-Thus, when we read and write to the underlying bit vector, we may page fault for every bit set, slowing down our insertions or queries.
+Thus, when we read and write to the underlying bit vector, we may page fault for every bit set ($k$ times), slowing down our insertions or queries.
 
 \subsection{Proposed Hierarchical Implementation}
 Our proposal is to allocate $w$ bit vectors of size $P$ bits, where $P$ is computer system's page size in bits and $w$ is an integer such that $m = w P$.
@@ -37,5 +37,5 @@ In essence, our proposal to create a bloom filter of bloom filters, hence the na
 
 Notice, for any given insertion or query, we have to perform $l$ more hash operations than the standard implementation. 
 This is not a concern if we select sufficiently cheap hash functions.
-More importantly, ince each bit vector is on it's own page of memory, we expect to page fault at most $l$ times.
+More importantly, since each bit vector is on it's own page of memory, we expect to page fault at most $l$ times.
  Thus, if we minimize $l$ without sacrificing effectiveness, we will reduce the expected number of page faults and increase the data structures efficiency.

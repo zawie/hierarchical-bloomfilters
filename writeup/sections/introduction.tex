@@ -1,11 +1,12 @@
-Bloom filters are extremely space efficient probabilistic data structures developed to implement set operations developed by Bloom in 1970 \cite{Bloom}.
-When an element is queried for membership, a ``false'' result means 
-the element has definitely not been added, but a ``true'' only means
-the element \textit{may} have been inserted. 
+Bloom filters are space efficient probabilistic data structures that implement set operations developed by Bloom in 1970 \cite{Bloom}.
+The trade-off of the afformentioned space efficiency is a probabilistic response.
+When an element is queried for membership, a ``false'' response means 
+the element is definitely not a member, but a ``true'' response only means
+the element \textit{may} be a member. 
 The rate at which the data structure incorrectly reports that an element has been inserted is called the \textit{False Positive Rate (FPR)}.
 This probabilistic feature allows Bloom filters to be extraordinarly space efficient,
-only needing a constant number of bits per stored element (irrespective of the elements size).
+only needing a constant number of bits per stored element irrespective of the elements size.
 
 Due to Bloom filter's space efficiency they have been adopted in many domains from network security \cite{GERAVAND20134047} to bioinformatics \cite{btu558}.
 Any improvement in performance (without negatively alterating the false positive rate) could lead to reduce latency in network calls or speed-ups in sequenceing DNA.
-This motivates our proposed solution which exploits computer systems' memory hierarchy to provide better improvement without increasing the false positive rate of bloom filters.
+This motivates our proposed solution which exploits computer systems' memory hierarchy to provide better performance without increasing the false positive rate of bloom filters.

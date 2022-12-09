@@ -6,6 +6,24 @@
 % \cite{Krimer}.
 
 
+\color{blue}
+\textbf{Note:} I decided to do a literature survey of different data structures solving this problem \textit{after} I explored this idea. 
+I wanted to have the joy of discovering whether or not my idea would work on my own!
+\color{black}
 Felix Putze et al. developed bloom filters with better cache efficiency and requiring less hash bits than the standard bloom filter \cite{Putze}.
+One of their implementations is similar to mine. They discretize a bloom filter into \textit{cache size} (64 bytes) chunks instead of \textit{page size} chunks (4096 bytes).
+This leads to even \textit{faster} improvements at the cost of a higher false positive rate. Remember, the smaller you make the sub-bloom filter, the worse the Euler-identity based approximation becomes.
+They also recompute random bit patterns: instead of setting $k$ bits in the bloom filter, they hash once to create a mask that sets multiplem bits \cite{Putze}. 
+This saves them time while performing hash functions. The combination of these techniques gave them much better performance over the standard implementation with slight false positive rate increases.
+I would be interested in further exploring if some pattern masking can be applied to our bloom filter. This may require another level in our hirarchy to give us small filters that we can efficiently mask over.
 
- 
+Rafael P. Laufer et al. developed a ``tamper proof'' Generalized Bloom Filter \cite{Laufer2007GeneralizedBF} to counteract an inherent vulnerability in bloom filters.
+The authors call the exploitation of this vulnerability an ``all one'' attack, where a malicious agent floods the bloom filter with requests to set all the bits to one, artificially increasing the false positive rate.
+This may slow down the program that the bloom filter is employed in and marks elements as members of the set at a higher rate than it should.
+While this paper does not seek to solve a similar problem to our implementaiton, it is important to note that the hierarchy we imposed on our bloom filter
+may make our implementation more susecptible to this kind of attack. If a malicious agent wanted to cause a high false positive rate for a certain kind of element, they need not find a system to set all the bits.
+Instead, they would only have to exploit one hash function: the hash function that selects bloom filters. 
+This may pose a security risk.
+Thus, for production uses, it may be wise to use a cryptographically secure hashing algorithm for this ``choke point'' hash function.
+However, we could also employ technieques discussed by Laufer, such as having multiple hash functions that set and reset bits accross the bit vector \cite{Laufer2007GeneralizedBF}.
+In any case, further research should be done to prevent our implementation from being exploited.
