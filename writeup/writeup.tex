@@ -95,8 +95,8 @@
 	\section{Experiments}
 	\input{sections/experiments.tex}
 
-	\section{Application}
-	\input{sections/application.tex}
+	% \section{Application}
+	% \input{sections/application.tex}
 
 	\section{Literature Survey}
 	\input{sections/prior.tex}
@@ -104,97 +104,7 @@
 	\section{Conclusion}
 	\input{sections/conclusion.tex}
 
-	% I run three experiments on my data structure.
-
-	% \subsection{Measure False Positive Rate}
-	
-	% For this experiment, we seek to measure how the false positive rate of our Hierarchical bloom filter compares to the standard bloom filter. 
-	% Our theoeritcal anaylsis shows that these should be equivalent.
-	
-	% \textbf{Hypothesis:} \textit{The hierarchial bloom filter will have an identical false positive rate.}
-
-	% \subsubsection{Experimental Settings}
-	% The experiment will run as follows. First, generate $N$ random keys to insert and $N$ random keys to query by that are all distinct from the insertion keys.
-	% We choose $N= 2,000,000$. Then, for each bloom filter variant, generate bloom filters of various sizes: a bloom filter with $2N$ bits, $3N$ bits, $\ldots$ to $15N$ bits. 
-	% Generate the bloom filter with the parameters that theoertically minimize false positive rate; i.e $k=7$, $l=1$.
-	% Then, for each sized bloom filter, insert our $N$ keys for insertion and query $N$ false keys and compute what precentage of them are falsely accepted.
-	% This measurement is the false positive rate of the variant for a certain bits per element measurement.
-	% Repeat this experiment $20$ times and take the average. (The plots I generated in results only do it once, for now.)
-	% This gives us a good gauge of how false positive rate behaves for each variant as we provide more memory.
-	
-	% Ideally, we want to see the Hierarchical bloom filter having the same false positive rate as the standard bloom filter.
-
-	% \subsubsection{Results}
-	% \begin{center}
-	% 	% \includegraphics[width=10cm]{../plots/fp.png}
-	% \end{center}
-
-	% We can see interesting results here. 
-	% The hierarchial bloom filter has substantially worse false positive rates sometimes. 
-	% You can see sometimes the false positive bad becomes extraordinarily bad. 
-	% These upticks are likely due to bad selections of seed for the choke-point hash function. Thus, this leads to a lot of collisions and therefore a high false positive rate.
-
-	% For the filnal paper I will run the experiment multiple times and mean to get a more meaningful result.
-
-	% Nonetheless, this demonstrates a flaw in my proposed data structure which I will discuss more in my final paper.
-	% It is interesting that the theoeretical analysis predicts that they will have the same bound, but in practice we see worse false positive rate.
-	% \subsection{Measure Throughput for small $m$}
-	
-	% For this experiment, we seek to validate two things 
-	% \begin{enumerate}
-	% 	\item The run time is constant with respect to the size of the bloom filter
-	% 	\item The hierarchical bloom filter has similar speeds to the standard bloom filter for low page sizes.
-	% \end{enumerate}
-
-	% \textbf{Hypothesis:} \textit{The hierarchial bloom filter will work the same 1 page size, and slowly become better but platue when the page count becomes 7.}
-	% \subsubsection{Experimental Settings}
-	% The experiment will run as follows.
-	% First, generate $N=10,000,000$ random keys. 
-
-	% Then, we will run the following experiment on the two variants and plot the results.
-	% Use the optimal theoeretical configuraiton for each bloom filter (i.e, $k=7$, $l=1$)
- 	% \begin{enumerate}
-	% 	\item Generate a bloom filter of size $m$ pages.
-	% 	\item Insert all $N$ keys and time how long it takes to do the operation; we will denote the elapsed time as $t$
-	% 	\item Compute and plot the throughput: $N/t$
-	% \end{enumerate}
-	% Repeat the experiment for $m = 1,2,\ldots,8,9,10,15,20,25$
-
-	% \subsubsection{Results}
-	% \begin{center}
-	% 	% \includegraphics[width=10cm]{../plots/scale-m.png}
-	% \end{center}
-
-	% These results are positive: the hierarchial bloom filter has higher throughput than the standard bloom filter.
-
-	% However, I have unexplained results as my bloom filter should behave identically when $m=1$. This will be explored for the final paper.
-	% It is possible I miss computed or made a coding error in one or both of the implementations. This requires more digging...
-	% \subsection{Measure Duration as $n$ scales}
-
-	% For this experiment, we seek to validate that our implementation performs better than the standard implementation as $n$ grows.
-	
-	% \textbf{Hypothesis:} \textit{The hierarchial bloom filter will take less time to insert $n$ keys}
-
-	% \subsubsection{Experimental Settings}
-	
-	% The experiment will run as follows:
- 	% \begin{enumerate}
-	% 	\item Generate $n = 500,000$ keys
-	% 	\item Generate a bloom filter of both varianets of size $10n$. Use the optimal theoeretical configuraiton for each bloom filter (i.e, $k=7$, $l=1$).
-	% 	\item Time how long it takes to insert all $n$ keys into each of the bloom filters.
-	% 	\item Plot the time and results.
-	% 	\item Repeat for $n = 1e6, 2e6, \ldots 120e6$
-	% \end{enumerate}
-
-	% \subsubsection{Results}
-	% \begin{center}
-	% 	% \includegraphics[width=10cm]{../plots/scale-nm.png}
-	% \end{center}
-
-	% These results are positive: the hierarchial bloom filter takes noticably less time to insert $n$ keys for every choice of $n$.
-	% I will do more numerical analysis for the final paper. But these results are promising!
 	\newpage
 	\bibliography{refs}
-
 	
 \end{document}

@@ -52,17 +52,21 @@ Therefore, we anticpate much better performance.
 
 \subsubsection{Standard False Positive Rate}
 
+As we have covered in class, the false positive rate of a standard bloom filter is as follows.
 \begin{equation}
     (1 - (1 - \frac{1}{m})^{nk})^k \approx (1 - (1 - e)^{kn/m})^k
 \end{equation}
 
+Setting $k=7$ will minimize the false positive rate, as discussed in class.
 
 \subsubsection{Hierarchical False Positive Rate}
+Suppose we have a allocated $m$ bits in total chunked into bit vectors of size $P$ and that we have to inserted $n$ elements into our bloom filter.
+
 We now want to compute the false positive rate of the hierarchical implementation.
 This can be computed by supposing the bloom filter has been filled with $n$ elements and computing the probability that a querying a false key would result in a true response.
 
-Assuming our hash function is uniform, any particular bloom filter is anticpated to have $\frac{nl}{m/P} = \frac{nlP}{m} $ elements in it.
-There are $m/P$ bloom filters and for any element we choose $l$ filters. As before $k$ is the number of hash functions a particular bloom filter uses.
+Assuming our hash function is uniform, any particular sub-bloom filter is anticpated to have $\frac{nl}{m/P} = \frac{nlP}{m} $ elements in it.
+There are $m/P$ bloom filters and we choose $l$ of them to check. As before $k$ is the number of hash functions a particular bloom filter uses.
 Thus, the chance any one bloom filter is set is:
 $$(1-(1 - \frac{1}{P})^{lknP/m})^k$$
 For our hierarchical implementation to return true, all $l$ bloom filters selected must return a positive result.
@@ -81,31 +85,3 @@ Since our goal is reduce the number of pages accessed, the former is a more sens
 
 Therefore, the best parameter selection for our hierarchical implementation would be to select $1$ bloom filter the size of a bloom filter and set $7$ bits in each one.
 $$l = 1\text{ ; } k = 7$$
-
-% $$(1 - \frac{1}{P})^{kl \cdot n / (m/P)}$$
-% $$(1 - \frac{1}{P})^{kl \cdot n P/ m}$$
-% $$( 1 - (1 - \frac{1}{P})^{kl \cdot n P/ m})^{kl}$$
-
-% $$\approx ( 1 - e^{(kl \cdot n P/ m)/P})^{kl}$$
-% $$= ( 1 - e^{(kl \cdot n / m)})^{kl}$$
-
-% $$(1 - \frac{1}{P})^{kl \cdot n}$$
-
-% $$(1 - \frac{1}{P})^{kl \cdot n}$$
-
-% \begin{equation}
-%     f_h = (1 - (1 - \frac{1}{m})^{nkl})^{kl}
-% \end{equation}
-
-
-\subsubsection{Hierarchical Implementation}
-
-Suppose we have a allocated $m$ bits in total chunked into $w$ bit vectors of size $P$ bits:
-$$ m = wP$$
-Moreober, suppose we anticipate to insert $n$ elements are we allocate
-
-
-Assuming our hash function's output is uniform, we can conclude that for
-\begin{equation}
-    f_p = (1 - (1 - \frac{1}{m}^{nk}))^k
-\end{equation}
