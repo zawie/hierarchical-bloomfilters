@@ -1,0 +1,34 @@
+\subsection{Code}
+
+
+\subsection{Raw Data}
+Here I will attach the raw data generated to create the efficieny and false positive graphs used earliy
+\subsubsection{Duration vs. Number of Insertions}
+
+\DTLsetseparator{   }
+\DTLloaddb{nmData}{fig/scale_nm.dat}%Load vocab file
+
+\begin{NoHyper}
+    \begin{tabularx}{\columnwidth}{X|X|X}
+        \textbf{Number of Insertions (Millions)} & \textbf{Standard (Seconds)} & \textbf{Hierarchical (Seconds)} \\
+        \hline
+        \DTLforeach*{nmData}{\N=n, \Standard=standard,\Hierarchical=hierarchal}{
+        \N & \Standard & \Hierarchical \\
+        }
+    \end{tabularx}
+\end{NoHyper}
+
+
+\subsubsection{Bits per Elements vs. False Positive Rate}
+\DTLloaddb{fpData}{fig/fp.dat}%Load vocab file
+\tiny
+\begin{NoHyper}
+    \begin{tabularx}{\columnwidth}{X|X|X}
+        \textbf{Bits per Element} & \textbf{Standard (Seconds)} & \textbf{Hierarchical (Seconds)} \\
+        \hline
+        \DTLforeach*{fpData}{\BPE=n/m, \Standard=standard,\Hierarchical=hierarchal}{
+        \BPE & \Standard & \Hierarchical \\
+        }
+    \end{tabularx}
+\end{NoHyper}
+\normalsize

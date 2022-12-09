@@ -16,6 +16,7 @@ writeup/*
 !writeup/sections
 writeup/sections/*
 !writeup/sections/*.tex
+!writeup/fig
 
 #Ignore generated files
 *.generated.*
