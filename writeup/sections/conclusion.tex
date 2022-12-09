@@ -1,0 +1,7 @@
+In this paper, we have theoretically and emperically justified a variant implementation of bloom filters
+that lead to much higher performance without increasing the false positive rate.
+We anaylzed the expected number of unique pages accessed per query, which should coorelate with expected number of page faults, and found that our implementation is expected to page fault less.
+Moreover, we found a closed form expression of the false positive rate of our implementaiton and found that it was equivalent to the standard implementation's false positive rate.
+Additionally, we performed two experiments with randomly generated keys to emperically back these claims.
+Lastly, we compared the standard and hierarchical implementation on a real data set.
+Our findings were positive: our implementation is more efficient than the standard implementation while maintaing the same false positive rate.
