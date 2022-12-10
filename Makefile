@@ -40,11 +40,13 @@ clean_all:
 run_fast:
 	make clean
 	make build
-	./experiments/fp.bash			2 5 10 15 
+	./experiments/fp.bash			2 5 10 15 25 30
+	./experiments/aol.bash			2 5 10 15 25 30
 	./experiments/scale_nm.bash		10000 100000 200000 300000 500000 900000 1000000
 
 run_full:
 	make clean
 	make build
-	./experiments/fp.bash			2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+	./experiments/fp.bash			2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+	./experiments/aol.bash			2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
 	./experiments/scale_nm.bash		1000000 5000000 10000000 15000000 20000000 25000000 30000000 40000000 50000000 70000000 90000000 110000000
