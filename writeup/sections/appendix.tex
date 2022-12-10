@@ -19,7 +19,7 @@ Here I will attach the raw data generated to create the efficieny and false posi
 \end{NoHyper}
 
 
-\subsubsection{Bits per Elements vs. False Positive Rate}
+\subsubsection{False Positive Rate vs. Bits Per Element}
 \DTLloaddb{fpData}{fig/fp.dat}%Load vocab file
 \tiny
 \begin{NoHyper}
@@ -32,3 +32,16 @@ Here I will attach the raw data generated to create the efficieny and false posi
     \end{tabularx}
 \end{NoHyper}
 \normalsize
+
+\subsubsection{Throughput vs. Bits Per Element (AOL)}
+\DTLloaddb{aol}{fig/aol.dat}
+
+\begin{NoHyper}
+    \begin{tabularx}{\columnwidth}{X|X|X|X|X}
+        \textbf{Bits per Element} & \textbf{Standard (Insertions/Second)} & \textbf{Hierarchical (Insertions/Second)} & \textbf{Standard False Positive Rate} & \textbf{Hierarchical False Positive Rate} \\
+        \hline
+        \DTLforeach*{aol}{\BPE=n/m, \sthru=standard_thru, \hthru=hierarchal_thru, \sfp=standard_fp, \hfp=hierarchal_fp}{
+        \BPE & \sthru & \hthru & \sfp & \hfp \\
+        }
+    \end{tabularx}
+\end{NoHyper}
