@@ -7,4 +7,4 @@ To generate data used in the reportm run `make run_full`. Both of these commands
 Note, only one of each plot will be preserved, while the `.dats` will be preserved until deleted.
 
 # Writeup
-Tex files for the writeup and be found in the writeup directory.
+The PDF of the writeup as well sa the source tex files for can be found in the `./writeup` directory.
