@@ -6,8 +6,8 @@ Second, we will \textbf{measure false positives as we scale bits allocated per e
 We anticipate that the hierarchial and standard implementation will be approximately same as the theoerical false positive rate discussed before.
 
 For both of these sections, we pseudorandomly generate keys to both insert and query.
-Discussion on exactly how these keys are generated is outlined in the appendix.
-
+This is done by randomly selecting 94 bytes some amount of times (this is varier per experiment) using C's \texttt{rand} function.
+This is sufficiently random for our experimental purposes. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -21,7 +21,7 @@ For this experiment, we seek to validate that the hierarchical implementation pe
 
 The experiment will run as follows. For each implementaiton run the following procedure:
 \begin{enumerate}
-    \item Generate $n$ random keys.
+    \item Generate $n$ random keys of length $8$.
     \item Generate a bloom filter of both varianets of size $10n$. Use the optimal theoeretical configuraiton for each bloom filter (i.e, $k=7$, $l=1$).
     \item Time how long it takes to insert all $n$ keys into each of the bloom filters. Report this number.
     \item Repeat for various sizes of $n$.
