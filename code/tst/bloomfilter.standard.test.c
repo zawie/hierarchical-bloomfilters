@@ -19,7 +19,7 @@ void test_insert(void)
 {
     bloomfilt_t * bf = bloomfilter_init(NUM_BITS);
 
-    char * a = "anya is a badass";
+    char * a = "agata is a badass";
     char * b = "rice university";
 
     TEST_ASSERT_FALSE(bloomfilter_check(bf, a));

@@ -20,7 +20,7 @@ void test_insert(void)
     printf("Initing...\n");
     h_bloomfilt_t * bf = h_bloomfilter_init(NUM_BITS);
 
-    char * a = "anya is a badass";
+    char * a = "agata is a badass";
     char * b = "rice university";
 
     printf("Pre-checking...\n");

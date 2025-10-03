@@ -29,7 +29,7 @@ void test_hash(void)
     hash_config_t config = generate_hash_config();
 
     char * a = "cats are cool";
-    char * b = "anya is beautiful";
+    char * b = "agata is beautiful";
     char * c = "Rice university";
 
     //Test that hashing is consitent
